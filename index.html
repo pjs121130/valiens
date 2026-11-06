@@ -89,6 +89,10 @@ input,select,textarea{background:rgba(255,255,255,.5);border:1px solid rgba(255,
 .dive{position:fixed;z-index:100;border-radius:14px;pointer-events:none;transition:left .7s cubic-bezier(.7,0,.2,1),top .7s cubic-bezier(.7,0,.2,1),width .7s cubic-bezier(.7,0,.2,1),height .7s cubic-bezier(.7,0,.2,1),border-radius .7s}
 .dive.go{left:0!important;top:0!important;width:100vw!important;height:100vh!important;border-radius:0}
 .dive.out{opacity:0;transition:opacity .5s}
+.img.cut{object-fit:contain;background:none}
+.card .img.cut,.two>.img.cut,.two>div>.img.cut{background:linear-gradient(160deg,#f1f3f7,#e3e7ee)}
+.gm:has(.cut){background:none;border:0;box-shadow:none;overflow:visible}
+.gm .img.cut{filter:drop-shadow(0 14px 14px rgba(31,41,66,.28))}
 @media(max-width:560px){.hg{width:92px}}
 @media(prefers-reduced-motion:reduce){.hgi{animation:none}}
 </style>
@@ -125,7 +129,7 @@ const L=async(c,...q)=>(await getDocs(query(collection(db,c),...q))).docs.map(d=
 const byAt=(a,b)=>(b.at||'').localeCompare(a.at||'');
 const mail=id=>id.toLowerCase()+'@valiens.app';
 const msg=e=>({'auth/email-already-in-use':'이미 사용 중인 아이디입니다.','auth/invalid-credential':'아이디 또는 비밀번호가 올바르지 않습니다.','auth/weak-password':'비밀번호는 6자 이상이어야 합니다.','auth/invalid-email':'아이디는 영문과 숫자만 사용할 수 있습니다.','permission-denied':'권한이 없습니다.','auth/unauthorized-domain':'Firebase 콘솔 > Authentication > 설정 > 승인된 도메인에 이 사이트 주소를 추가해 주세요.','auth/operation-not-allowed':'Firebase 콘솔 > Authentication > 로그인 방법에서 해당 방식을 사용 설정해 주세요.','auth/requires-recent-login':'다시 로그인한 뒤 시도해 주세요.'}[e.code]||e.message);
-const img=p=>p.img?`<img class="img" src="${esc(p.img)}" alt="">`:`<div class="img ph">V</div>`;
+const img=p=>p.img?`<img class="img${/^data:image\/(png|webp)/.test(p.img)?' cut':''}" src="${esc(p.img)}" alt="">`:`<div class="img ph">V</div>`;
 const lock=p=>p.vip&&!U.admin&&tierOf(U.points).n!=='VIP';
 let ready=false;
 const isG=()=>au.currentUser&&au.currentUser.providerData.some(p=>p.providerId==='google.com');
@@ -196,7 +200,15 @@ V.addp=()=>{S.nc=[];S.ns=[];return `<h2>상품 등록</h2><label>상품명</labe
 V.admin=async()=>{const[o,u]=await Promise.all([L('orders'),L('users')]);o.sort(byAt);
  return `<h2>주문 (${o.filter(x=>x.st==='입금대기').length}건 입금 대기)</h2><div class="tw"><table><tr><th>주문번호</th><th>회원</th><th>입금자</th><th>상품</th><th>금액</th><th>주소</th><th>상태</th></tr>${o.map(x=>`<tr><td>${x.id}</td><td>${esc(x.name)}</td><td>${esc(x.payer)}</td><td>${x.items.map(esc).join(', ')}</td><td>${won(x.paid)}</td><td>${esc(x.zip)} ${esc(x.addr)}</td><td>${stCell(x)}</td></tr>`).join('')||'<tr><td colspan="7" class="mu">주문이 없습니다.</td></tr>'}</table></div><h2 style="margin-top:30px">회원 (${u.length}명)</h2><div class="tw"><table><tr><th>이름</th><th>생년월일</th><th>아이디</th><th>가입일</th><th>포인트</th><th>등급</th></tr>${u.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.birth)}</td><td>${esc(x.id)}</td><td>${(x.at||'').slice(0,10)}</td><td>${x.points.toLocaleString()}P</td><td>${tierOf(x.points).n}</td></tr>`).join('')}</table></div>`};
 
-const rd=(f,m=1100,q=.86)=>new Promise(ok=>{const i=new Image();i.onload=()=>{const s=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',q))};i.onerror=()=>ok('');i.src=URL.createObjectURL(f)});
+const rd=(f,m=1100,q=.86)=>new Promise(ok=>{const i=new Image();i.onload=()=>{
+ const draw=mx=>{const s=Math.min(1,mx/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(i.width*s));c.height=Math.max(1,Math.round(i.height*s));c.getContext('2d').drawImage(i,0,0,c.width,c.height);return c};
+ let c=draw(m),a=false;
+ try{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;for(let k=3;k<d.length;k+=16)if(d[k]<250){a=true;break}}catch(e){}
+ if(!a)return ok(c.toDataURL('image/jpeg',q));
+ /* 투명 배경(누끼)은 JPEG로 저장하면 검게 변하므로 WebP/PNG로 저장하고, 용량이 크면 줄입니다 */
+ let mx=Math.min(m,900),u;
+ for(;;){c=draw(mx);u=c.toDataURL('image/webp',.88);if(!u.startsWith('data:image/webp'))u=c.toDataURL('image/png');if(u.length<900000||mx<300)break;mx=Math.round(mx*.8)}
+ ok(u)};i.onerror=()=>ok('');i.src=URL.createObjectURL(f)});
 const need=()=>{if(!S.color||!S.size){alert('색상과 사이즈를 선택해 주세요.');return null}return S.pid+'|'+S.color+'|'+S.size};
 const run=async f=>{try{await f()}catch(e){const m=msg(e);if(!m)return;const x=$('e');x?x.textContent=m:alert(m)}};
 
@@ -211,7 +223,7 @@ window.A={
   S.busy=1;el.closest('.ward').classList.add('picking');el.classList.add('pick');
   setTimeout(()=>{const im=el.querySelector('.gm .img'),r=im.getBoundingClientRect(),d=document.createElement('div');d.className='dive';
    d.style.cssText=`left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px`;
-   d.style.background=im.tagName==='IMG'?`url("${im.src}") center/cover`:'linear-gradient(160deg,#eef0f5,#dfe3ea)';
+   d.style.background=im.tagName==='IMG'?(im.classList.contains('cut')?`url("${im.src}") center/contain no-repeat`:`url("${im.src}") center/cover`):'linear-gradient(160deg,#eef0f5,#dfe3ea)';
    document.body.appendChild(d);d.getBoundingClientRect();d.classList.add('go');
    setTimeout(async()=>{try{S.v='detail';S.pid=id;S.color=null;S.size=null;await draw()}finally{S.busy=0;d.classList.add('out');setTimeout(()=>d.remove(),500)}},700)},850)},
  google:()=>run(async()=>{try{await signInWithPopup(au,new GoogleAuthProvider())}catch(e){if(/popup/.test(e.code||''))return;throw e}}),
