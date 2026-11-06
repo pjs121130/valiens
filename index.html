@@ -68,17 +68,19 @@ nav button.o{border-color:rgba(255,255,255,.95)}
 input,select,textarea{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 2px 6px rgba(31,41,66,.06);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .sz{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.25));-webkit-backdrop-filter:none;backdrop-filter:none}.sz.on{background:rgba(24,26,34,.85)}
 .hrt{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background:rgba(255,255,255,.55)}
-.ward{position:relative;margin-bottom:34px;padding:26px 0 0;border-radius:32px;overflow:hidden;text-align:center}
+.ward{position:relative;margin-bottom:34px;padding:26px 0 0;border-radius:32px;text-align:center;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 40px rgba(31,41,66,.09),inset 0 1px 0 #fff;-webkit-backdrop-filter:none;backdrop-filter:none}
 .ward h3{margin:0 0 4px}
 .wscroll{overflow-x:auto;perspective:1300px;perspective-origin:50% 0;padding:14px 24px 56px;scrollbar-width:none;text-align:left}
 .wscroll::-webkit-scrollbar{display:none}
 .wi{display:flex;width:max-content;min-width:100%;position:relative;padding-top:10px}
 .wi::before{content:"";position:absolute;left:0;right:0;top:8px;height:7px;border-radius:9px;background:linear-gradient(#fff,#b4bac6 60%,#eef0f4);box-shadow:0 3px 10px rgba(31,41,66,.25)}
-.hg{width:128px;flex:none;position:relative;cursor:pointer;transform-origin:50% 0;transform:rotateY(-62deg);transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .6s,filter .6s}
+.hg{width:104px;flex:none;position:relative;cursor:pointer;margin:0 6px}
 .hg:first-child{margin-left:auto}.hg:last-child{margin-right:auto}
-.hg:hover{transform:rotateY(-30deg)}
-.hg.pick{transform:rotateY(0) scale(1.1);z-index:5}.hg.pick .hgi{animation:none}
-.ward.picking .hg:not(.pick){opacity:.1;filter:blur(3px);transform:rotateY(-82deg)}
+.hgr{transform-origin:50% 0;transform:rotateY(-72deg);transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .6s,filter .6s}
+.hg:hover,.hg.front{z-index:4}
+.hg:hover .hgr,.hg.front .hgr{transform:rotateY(0) scale(1.12)}
+.hg.pick{z-index:5}.hg.pick .hgr{transform:rotateY(0) scale(1.12)}.hg.pick .hgi{animation:none}
+.ward.picking .hg:not(.pick) .hgr{opacity:.1;filter:blur(3px);transform:rotateY(-85deg)}
 .hgi{transform-origin:50% 0;animation:swing 4s ease-in-out infinite alternate;animation-delay:calc(var(--i)*-.6s)}
 @keyframes swing{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
 .hk{display:block;margin:0 auto -4px}
@@ -87,7 +89,7 @@ input,select,textarea{background:rgba(255,255,255,.5);border:1px solid rgba(255,
 .dive{position:fixed;z-index:100;border-radius:14px;pointer-events:none;transition:left .7s cubic-bezier(.7,0,.2,1),top .7s cubic-bezier(.7,0,.2,1),width .7s cubic-bezier(.7,0,.2,1),height .7s cubic-bezier(.7,0,.2,1),border-radius .7s}
 .dive.go{left:0!important;top:0!important;width:100vw!important;height:100vh!important;border-radius:0}
 .dive.out{opacity:0;transition:opacity .5s}
-@media(max-width:560px){.hg{width:108px}}
+@media(max-width:560px){.hg{width:92px}}
 @media(prefers-reduced-motion:reduce){.hgi{animation:none}}
 </style>
 </head>
@@ -151,13 +153,13 @@ V.signup=()=>`<div class="box"><h2>회원가입</h2><label>이름</label><input 
 
 V.gprofile=()=>{const g=au.currentUser;return `<div class="box"><h2>추가 정보 입력</h2><p class="mu">Google 계정으로 처음 오셨어요. 이름과 생년월일을 입력하면 가입이 완료돼요.</p><label>이름</label><input id="gn" value="${esc(g.displayName||'')}"><label>생년월일</label><input id="gb" type="date"><label class="ck"><input id="gc" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의합니다. <a href="#" onclick="A.go('privacy');return false" style="color:var(--gold)">내용 보기</a></span></label><div class="err" id="e"></div><button style="width:100%" onclick="A.gsave()">가입 완료</button><p style="text-align:center"><a href="#" onclick="A.out();return false" class="mu">취소</a></p></div>`};
 const hanger='<svg class="hk" viewBox="0 0 100 46" width="84" aria-hidden="true"><path d="M50 4c-5 0-8 3-8 7 0 3 3 5 6 6" fill="none" stroke="#98a0ac" stroke-width="2.4" stroke-linecap="round"/><path d="M50 17 4 42h92z" fill="none" stroke="#98a0ac" stroke-width="2.4" stroke-linejoin="round"/></svg>';
-const ward=()=>{const l=P.slice(0,14),it=l.length?l.map((p,i)=>`<div class="hg" style="--i:${i}" onclick="A.enter('${p.id}',this)"><div class="hgi">${hanger}<div class="gm">${img(p)}</div><div class="gl">${esc(p.name)}</div></div></div>`).join(''):Array.from({length:5},(_,i)=>`<div class="hg" style="--i:${i}"><div class="hgi">${hanger}<div class="gm">${img({})}</div><div class="gl">COMING SOON</div></div></div>`).join('');
+const ward=()=>{const l=P.slice(0,14),it=l.length?l.map((p,i)=>`<div class="hg" style="--i:${i}" onclick="A.enter('${p.id}',this)"><div class="hgr"><div class="hgi">${hanger}<div class="gm">${img(p)}</div><div class="gl">${esc(p.name)}</div></div></div></div>`).join(''):Array.from({length:5},(_,i)=>`<div class="hg" style="--i:${i}"><div class="hgr"><div class="hgi">${hanger}<div class="gm">${img({})}</div><div class="gl">COMING SOON</div></div></div></div>`).join('');
  return `<section class="ward glass"><div class="eyebrow">WARDROBE</div><h3>옷장</h3><p class="mu" style="margin:0 0 4px">마음에 드는 옷을 눌러 보세요. 옷이 돌아서면 안으로 들어가요.</p><div class="wscroll"><div class="wi">${it}</div></div></section>`};
 const ring=()=>{const b=P.length?P.slice(0,10):[{}],n=Math.max(6,b.length),it=Array.from({length:n},(_,i)=>b[i%b.length]);
  return `<div class="ring3d"><div class="ring" style="--n:${n};--tn:${Math.tan(Math.PI/n).toFixed(4)}">${it.map((p,i)=>`<div class="ri" style="--i:${i}"${p.id?` onclick="A.go('detail','${p.id}')"`:''}>${img(p)}</div>`).join('')}</div></div>`};
 const cards=l=>l.length?l.map(p=>`<div class="card"><div class="imw" onclick="A.go('detail','${p.id}')">${img(p)}</div><button class="hrt" onclick="A.w('${p.id}')">${W.includes(p.id)?'♥':'♡'}</button><b style="cursor:pointer" onclick="A.go('detail','${p.id}')">${esc(p.name)}</b>${p.vip?'<span class="tag">VIP 신상</span><br>':''}<span class="mu">${won(p.price)}</span></div>`).join(''):'<p class="mu">검색 결과가 없습니다.</p>';
 V.home=async()=>{P=(await L('products')).sort(byAt);const g='VALIENS · NEW SEASON · BRONZE TO VIP · '.repeat(4);
- return `<div class="notice">NOTICE · 신규 가입 시 BRONZE 등급으로 시작해요. 리뷰 작성 시 +1,000P</div><section class="hero"><div class="eyebrow">2026 NEW SEASON</div><h1 class="wm">VALIENS</h1><p>유행보다 오래 입는 옷.<br>좋은 소재와 군더더기 없는 실루엣으로, 매일 입고 싶은 기본을 만듭니다.</p><button onclick="document.getElementById('g').scrollIntoView({behavior:'smooth'})">컬렉션 보기</button><div class="hl"><span>BRONZE</span><span>SILVER 5%</span><span>GOLD 10%</span><span>DIAMOND 15%</span><span>VIP 신상 무료</span></div></section>${ward()}${tabs()}<div class="bar2"><input id="q" placeholder="옷 이름 검색" value="${esc(Q)}" oninput="A.search(this.value)"><select onchange="A.sort(this.value)"><option value="new" ${SORT==='new'?'selected':''}>최신순</option><option value="lo" ${SORT==='lo'?'selected':''}>낮은 가격순</option><option value="hi" ${SORT==='hi'?'selected':''}>높은 가격순</option></select><button class="o" onclick="ONLYW=!ONLYW;A.go('home')">${ONLYW?'전체 보기':'♥ 찜한 상품'}</button></div><div class="grid" id="g">${list()}</div>`};
+ return `<div class="notice">NOTICE · 신규 가입 시 BRONZE 등급으로 시작해요. 리뷰 작성 시 +1,000P</div><section class="hero"><div class="eyebrow">2026 NEW SEASON</div><h1 class="wm">VALIENS</h1><p>유행보다 오래 입는 옷.<br>좋은 소재와 군더더기 없는 실루엣으로, 매일 입고 싶은 기본을 만듭니다.</p><button onclick="document.getElementById('g').scrollIntoView({behavior:'smooth'})">컬렉션 보기</button><div class="hl"><span>BRONZE</span><span>SILVER 5%</span><span>GOLD 10%</span><span>DIAMOND 15%</span><span>VIP 신상 무료</span></div></section>${ward()}${tabs()}<div class="bar2"><input id="q" placeholder="옷 이름 검색" value="${esc(Q)}" oninput="A.search(this.value)"><select onchange="A.sort(this.value)"><option value="new" ${SORT==='new'?'selected':''}>최신순</option><option value="lo" ${SORT==='lo'?'selected':''}>낮은 가격순</option><option value="hi" ${SORT==='hi'?'selected':''}>높은 가격순</option></select><button class="o" onclick="A.onlyw()">${ONLYW?'전체 보기':'♥ 찜한 상품'}</button></div><div class="grid" id="g">${list()}</div>`};
 V.detail=async()=>{P=await L('products');const p=P.find(x=>x.id===S.pid);if(!p)return'<p class="mu">상품을 찾을 수 없습니다.</p>';
  const rv=(await L('posts',where('t','==','review'))).filter(x=>x.pid===p.id).sort(byAt),t=tierOf(U.points),dp=Math.round(p.price*(100-t.d)/100),cols=p.colors?.length?p.colors:DCOL,szs=p.sizes?.length?p.sizes:DSZ;
  const opt=(U.admin||lock(p))?'':`<label>색상 · <span id="cn">선택</span></label><div class="sws">${cols.map(c=>`<span class="sw" data-n="${esc(c)}" style="background:${CMAP[c]||'#777'}" onclick="A.pc('${esc(c)}')"></span>`).join('')}</div><label>사이즈</label><div class="szs">${szs.map(z=>`<button type="button" class="sz" data-n="${esc(z)}" onclick="A.ps('${esc(z)}')">${esc(z)}</button>`).join('')}</div>`;
@@ -172,7 +174,7 @@ const post=x=>`<div class="post">${x.star?`<div>${stars(x.star)}</div>`:''}<b>${
 V.board=async()=>{const l=(await L('posts',where('t','==',S.tab))).sort(byAt),rv=S.tab==='review';if(rv)P=await L('products');
  return `${tabs()}<h3>${rv?'리뷰':'문의사항'}</h3>${rv?`<label>상품</label><select id="bp">${P.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select><label>별점</label><select id="bs">${[5,4,3,2,1].map(n=>`<option value="${n}">${stars(n)}</option>`).join('')}</select>`:''}<label>제목</label><input id="bt"><label>내용</label><textarea id="bb" rows="3"></textarea>${rv?'<label>사진 (선택)</label><input id="bf" type="file" accept="image/*">':''}<div class="err" id="e"></div><button onclick="A.post()">등록</button><div style="margin-top:22px">${l.map(post).join('')||'<p class="mu">등록된 글이 없습니다.</p>'}</div>`};
 V.cart=async()=>{P=await L('products');const l=cart.map((k,i)=>({p:P.find(x=>x.id===k.split('|')[0]),i,k})).filter(x=>x.p);
- return `<h2>장바구니</h2>${l.length?l.map(x=>`<div class="post" style="display:flex;justify-content:space-between;gap:8px"><span>${esc(x.p.name)}<br><span class="mu">${esc(optTxt(x.k))}${won(x.p.price)}</span></span><button class="o" onclick="A.rm(${x.i})">삭제</button></div>`).join('')+`<h3>합계 ${won(l.reduce((a,x)=>a+x.p.price,0))}</h3><button onclick="S.co=[...cart];A.go('checkout')">주문하기</button>`:'<p class="mu">장바구니가 비어 있습니다.</p>'}`};
+ return `<h2>장바구니</h2>${l.length?l.map(x=>`<div class="post" style="display:flex;justify-content:space-between;gap:8px"><span>${esc(x.p.name)}<br><span class="mu">${esc(optTxt(x.k))}${won(x.p.price)}</span></span><button class="o" onclick="A.rm(${x.i})">삭제</button></div>`).join('')+`<h3>합계 ${won(l.reduce((a,x)=>a+x.p.price,0))}</h3><button onclick="A.checkout()">주문하기</button>`:'<p class="mu">장바구니가 비어 있습니다.</p>'}`};
 V.checkout=async()=>{P=await L('products');const l=S.co.map(k=>({p:P.find(x=>x.id===k.split('|')[0]),k})).filter(x=>x.p);if(!l.length)return'<p class="mu">주문할 상품이 없습니다.</p>';
  const t=tierOf(U.points),sum=l.filter(x=>!x.p.vip).reduce((a,x)=>a+x.p.price,0),paid=Math.round(sum*(100-t.d)/100);
  return `<h2>주문하기</h2>${l.map(x=>`<div class="post">${esc(x.p.name)} · ${esc(optTxt(x.k))}${x.p.vip?'무료 (VIP 신상)':won(x.p.price)}</div>`).join('')}<p>상품 합계 ${won(sum)}<br>${t.n} 등급 할인 ${t.d}% 적용</p><h3>결제 금액 ${won(paid)}</h3><div class="tier" ${paid?'':'hidden'}><b>무통장 입금 안내</b><br>입금 계좌: 1002-0000-0000<br>예금주: 임건우<br><span class="mu">주문 후 입금해 주시면 확인 후 처리됩니다.</span></div><label>입금자명</label><input id="ck" value="${esc(U.name)}"><label>우편번호 (5자리)</label><input id="cz" inputmode="numeric"><label>주소</label><input id="ca"><label>상세주소</label><input id="cd"><div class="err" id="e"></div><button onclick="A.order()">주문 완료</button>`};
@@ -202,7 +204,11 @@ window.S=S;
 window.A={
  go:(v,x)=>{S.v=v;if(x!==undefined)S.pid=x;if(v==='detail'){S.color=null;S.size=null}draw()},
  out:()=>signOut(au),
- enter:(id,el)=>{if(S.busy)return;S.busy=1;el.closest('.ward').classList.add('picking');el.classList.add('pick');
+ onlyw:()=>{ONLYW=!ONLYW;draw()},
+ checkout:()=>{S.co=[...cart];A.go('checkout')},
+ enter:(id,el)=>{if(S.busy)return;
+  if(matchMedia('(hover:none)').matches&&!el.classList.contains('front')){document.querySelectorAll('.hg.front').forEach(e=>e.classList.remove('front'));el.classList.add('front');return}
+  S.busy=1;el.closest('.ward').classList.add('picking');el.classList.add('pick');
   setTimeout(()=>{const im=el.querySelector('.gm .img'),r=im.getBoundingClientRect(),d=document.createElement('div');d.className='dive';
    d.style.cssText=`left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px`;
    d.style.background=im.tagName==='IMG'?`url("${im.src}") center/cover`:'linear-gradient(160deg,#eef0f5,#dfe3ea)';
