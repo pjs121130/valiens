@@ -87,7 +87,7 @@ header{background:rgba(22,20,17,.5);-webkit-backdrop-filter:blur(18px) saturate(
 <footer>VALIENS · EST. 2026<br><a href="#" onclick="A.go('privacy');return false">개인정보 처리방침</a></footer>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import{getAuth,createUserWithEmailAndPassword as mk,signInWithEmailAndPassword as lg,signOut,deleteUser,onAuthStateChanged as on}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getAuth,createUserWithEmailAndPassword as mk,signInWithEmailAndPassword as lg,signOut,deleteUser,onAuthStateChanged as on,GoogleAuthProvider,signInWithPopup}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import{getFirestore,collection,doc,getDoc,getDocs,setDoc,addDoc,updateDoc,deleteDoc,query,where,increment,writeBatch}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* ▼▼▼ Firebase 콘솔의 웹 앱 설정값을 여기에 붙여 넣으세요 ▼▼▼ */
@@ -112,21 +112,22 @@ const list=()=>{let l=P.filter(p=>p.name.includes(Q)&&(!ONLYW||W.includes(p.id))
 const L=async(c,...q)=>(await getDocs(query(collection(db,c),...q))).docs.map(d=>({id:d.id,...d.data()}));
 const byAt=(a,b)=>(b.at||'').localeCompare(a.at||'');
 const mail=id=>id.toLowerCase()+'@valiens.app';
-const msg=e=>({'auth/email-already-in-use':'이미 사용 중인 아이디입니다.','auth/invalid-credential':'아이디 또는 비밀번호가 올바르지 않습니다.','auth/weak-password':'비밀번호는 6자 이상이어야 합니다.','auth/invalid-email':'아이디는 영문과 숫자만 사용할 수 있습니다.','permission-denied':'권한이 없습니다.','auth/requires-recent-login':'다시 로그인한 뒤 시도해 주세요.'}[e.code]||e.message);
+const msg=e=>({'auth/email-already-in-use':'이미 사용 중인 아이디입니다.','auth/invalid-credential':'아이디 또는 비밀번호가 올바르지 않습니다.','auth/weak-password':'비밀번호는 6자 이상이어야 합니다.','auth/invalid-email':'아이디는 영문과 숫자만 사용할 수 있습니다.','permission-denied':'권한이 없습니다.','auth/unauthorized-domain':'Firebase 콘솔 > Authentication > 설정 > 승인된 도메인에 이 사이트 주소를 추가해 주세요.','auth/operation-not-allowed':'Firebase 콘솔 > Authentication > 로그인 방법에서 해당 방식을 사용 설정해 주세요.','auth/requires-recent-login':'다시 로그인한 뒤 시도해 주세요.'}[e.code]||e.message);
 const img=p=>p.img?`<img class="img" src="${esc(p.img)}" alt="">`:`<div class="img ph">V</div>`;
 const lock=p=>p.vip&&!U.admin&&tierOf(U.points).n!=='VIP';
 let ready=false;
+const isG=()=>au.currentUser&&au.currentUser.providerData.some(p=>p.providerId==='google.com');
 
 async function loadU(u){U=null;if(!u)return;
- for(let i=0;i<6;i++){const s=await getDoc(doc(db,'users',u.uid));if(s.exists()){U={uid:u.uid,...s.data()};break}await new Promise(r=>setTimeout(r,500))}
+ for(let i=0;i<(u.providerData.some(p=>p.providerId==='google.com')?1:6);i++){const s=await getDoc(doc(db,'users',u.uid));if(s.exists()){U={uid:u.uid,...s.data()};break}await new Promise(r=>setTimeout(r,500))}
  if(U)U.admin=(await getDoc(doc(db,'admins',u.uid))).exists()}
 on(au,async u=>{await loadU(u);ready=true;draw()});
 
 const V={};
 async function draw(){
  if(!ready)return;
- if(!U&&S.v!=='signup'&&S.v!=='privacy')S.v='login';
- if(U&&(S.v==='login'||S.v==='signup'))S.v='home';
+ if(!U&&isG()&&S.v!=='privacy')S.v='gprofile';else if(!U&&S.v!=='signup'&&S.v!=='privacy')S.v='login';
+ if(U&&(S.v==='login'||S.v==='signup'||S.v==='gprofile'))S.v='home';
  if(U&&!U.admin&&(S.v==='admin'||S.v==='addp'))S.v='home';
  nav();
  try{$('app').innerHTML=await V[S.v]()}catch(e){$('app').innerHTML='<p class="err">'+esc(msg(e))+'</p>'}
@@ -135,9 +136,10 @@ function nav(){const t=U&&(U.admin?'ADMIN':tierOf(U.points).n);
  $('nav').innerHTML=U?`<span class="mu">${esc(U.name)}님 <span class="tag t-${t}">${t}</span></span>`+(U.admin?`<button class="o" onclick="A.go('addp')">상품등록</button><button class="o" onclick="A.go('admin')">주문·회원관리</button>`:`<button class="o" onclick="A.go('cart')">장바구니(${cart.length})</button><button class="o" onclick="A.go('orders')">내 주문</button><button class="o" onclick="A.go('my')">내 등급</button>`)+`<button class="o" onclick="A.out()">로그아웃</button>`:`<button class="o" onclick="A.go('login')">로그인</button><button onclick="A.go('signup')">회원가입</button>`}
 const tabs=()=>`<div class="tabs"><button class="${S.v==='home'?'':'o'}" onclick="A.go('home')">전체 상품</button><button class="${S.v==='board'&&S.tab==='qna'?'':'o'}" onclick="S.tab='qna';A.go('board')">문의사항</button><button class="${S.v==='board'&&S.tab==='review'?'':'o'}" onclick="S.tab='review';A.go('board')">리뷰 (작성 시 +1,000P)</button></div>`;
 
-V.login=()=>`<div class="box"><h2>로그인</h2><label>아이디</label><input id="li" autocapitalize="off"><label>비밀번호</label><input id="lp" type="password" onkeydown="if(event.key==='Enter')A.login()"><div class="err" id="e"></div><button style="width:100%" onclick="A.login()">로그인</button><p class="mu" style="text-align:center"><a href="#" onclick="A.go('signup');return false" style="color:var(--gold)">회원가입</a></p></div>`;
+V.login=()=>`<div class="box"><h2>로그인</h2><label>아이디</label><input id="li" autocapitalize="off"><label>비밀번호</label><input id="lp" type="password" onkeydown="if(event.key==='Enter')A.login()"><div class="err" id="e"></div><button style="width:100%" onclick="A.login()">로그인</button><button class="o" style="width:100%;margin-top:10px" onclick="A.google()">Google로 계속하기</button><p class="mu" style="text-align:center"><a href="#" onclick="A.go('signup');return false" style="color:var(--gold)">회원가입</a></p></div>`;
 V.signup=()=>`<div class="box"><h2>회원가입</h2><label>이름</label><input id="sn"><label>생년월일</label><input id="sb" type="date"><label>아이디 (영문·숫자 4자 이상)</label><input id="si" autocapitalize="off"><label>비밀번호 (6자 이상)</label><input id="sp" type="password"><label>비밀번호 확인</label><input id="sp2" type="password"><label class="ck"><input id="sc" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의합니다. <a href="#" onclick="A.go('privacy');return false" style="color:var(--gold)">내용 보기</a></span></label><div class="err" id="e"></div><button style="width:100%" onclick="A.signup()">가입하기 (BRONZE 시작)</button><p style="text-align:center"><a href="#" onclick="A.go('login');return false" class="mu">로그인으로</a></p></div>`;
 
+V.gprofile=()=>{const g=au.currentUser;return `<div class="box"><h2>추가 정보 입력</h2><p class="mu">Google 계정으로 처음 오셨어요. 이름과 생년월일을 입력하면 가입이 완료돼요.</p><label>이름</label><input id="gn" value="${esc(g.displayName||'')}"><label>생년월일</label><input id="gb" type="date"><label class="ck"><input id="gc" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의합니다. <a href="#" onclick="A.go('privacy');return false" style="color:var(--gold)">내용 보기</a></span></label><div class="err" id="e"></div><button style="width:100%" onclick="A.gsave()">가입 완료</button><p style="text-align:center"><a href="#" onclick="A.out();return false" class="mu">취소</a></p></div>`};
 const ring=()=>{const b=P.length?P.slice(0,10):[{}],n=Math.max(6,b.length),it=Array.from({length:n},(_,i)=>b[i%b.length]);
  return `<div class="ring3d"><div class="ring" style="--n:${n};--tn:${Math.tan(Math.PI/n).toFixed(4)}">${it.map((p,i)=>`<div class="ri" style="--i:${i}"${p.id?` onclick="A.go('detail','${p.id}')"`:''}>${img(p)}</div>`).join('')}</div></div>`};
 const cards=l=>l.length?l.map(p=>`<div class="card"><div class="imw" onclick="A.go('detail','${p.id}')">${img(p)}</div><button class="hrt" onclick="A.w('${p.id}')">${W.includes(p.id)?'♥':'♡'}</button><b style="cursor:pointer" onclick="A.go('detail','${p.id}')">${esc(p.name)}</b>${p.vip?'<span class="tag">VIP 신상</span><br>':''}<span class="mu">${won(p.price)}</span></div>`).join(''):'<p class="mu">검색 결과가 없습니다.</p>';
@@ -187,6 +189,9 @@ window.S=S;
 window.A={
  go:(v,x)=>{S.v=v;if(x!==undefined)S.pid=x;if(v==='detail'){S.color=null;S.size=null}draw()},
  out:()=>signOut(au),
+ google:()=>run(async()=>{try{await signInWithPopup(au,new GoogleAuthProvider())}catch(e){if(/popup/.test(e.code||''))return;throw e}}),
+ gsave:()=>run(async()=>{const g=au.currentUser,n=$('gn').value.trim(),b=$('gb').value;if(!n||!b)throw{message:'이름과 생년월일을 입력해 주세요.'};if(!$('gc').checked)throw{message:'개인정보 수집·이용에 동의해 주세요.'};
+  await setDoc(doc(db,'users',g.uid),{name:n,birth:b,id:(g.email||g.uid).split('@')[0].toLowerCase(),points:0,consent:new Date().toISOString(),at:new Date().toISOString()});await loadU(g);nav();A.go('home')}),
  w:id=>{W=W.includes(id)?W.filter(x=>x!==id):[...W,id];localStorage.setItem('w',JSON.stringify(W));$('g').innerHTML=list()},
  sort:v=>{SORT=v;$('g').innerHTML=list()},
  leave:()=>run(async()=>{if(!confirm('탈퇴하면 계정과 회원정보가 삭제됩니다. 계속할까요?'))return;await deleteDoc(doc(db,'users',U.uid));await deleteUser(au.currentUser);alert('탈퇴가 완료되었습니다.')}),
