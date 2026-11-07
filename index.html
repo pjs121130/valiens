@@ -4,77 +4,163 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>VALIENS</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="VALIENS · 유행보다 오래 입는 옷">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--fg:#15161a;--mu:#6b7080;--ln:rgba(21,22,26,.1);--gold:#9a7b4f;--err:#c0392b;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;--gl:blur(24px) saturate(170%)}
-*{box-sizing:border-box}
-body{margin:0;color:var(--fg);font-family:var(--sans);font-weight:300;line-height:1.7;background:linear-gradient(165deg,#f7f8fb,#e9edf3 60%,#f3f1ee);background-attachment:fixed;padding-top:env(safe-area-inset-top,0);-webkit-font-smoothing:antialiased}
-body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none;width:55vmax;height:55vmax;opacity:.7}
-body::before{top:-20vmax;left:-15vmax;background:#d9e5ff}body::after{bottom:-22vmax;right:-18vmax;background:#ffe6d6}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:.05em;margin:0 0 .5em}h2{font-size:32px}h3{font-size:22px}h4{font-size:18px}
-.glass,.box,.tier,.notice,.hero,.card,.tabs,.tw{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);-webkit-backdrop-filter:var(--gl);backdrop-filter:var(--gl);box-shadow:0 12px 40px rgba(31,41,66,.09),inset 0 1px 0 #fff}
-header{position:sticky;top:0;z-index:20;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 20px 10px;background:rgba(255,255,255,.65);-webkit-backdrop-filter:var(--gl);backdrop-filter:var(--gl);border-bottom:1px solid rgba(255,255,255,.9);box-shadow:0 2px 24px rgba(31,41,66,.06)}
-.logo{cursor:pointer;font-family:var(--serif);font-size:28px;font-weight:500;letter-spacing:.42em;padding-left:.42em;line-height:1.2}
-nav{display:flex;gap:4px 14px;flex-wrap:wrap;justify-content:center;align-items:center;font-size:13px}
-button{font:inherit;font-size:13px;font-weight:500;letter-spacing:.08em;background:var(--fg);color:#fff;border:1px solid var(--fg);padding:13px 26px;border-radius:99px;cursor:pointer;transition:.25s}
-button:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(21,22,26,.2)}
-button.o{background:rgba(255,255,255,.6);color:var(--fg);border-color:var(--ln)}
-nav button{padding:7px 14px}nav button.o{background:none;border-color:transparent}nav button.o:hover{box-shadow:none;opacity:.6;transform:none}
-main{max-width:1080px;margin:0 auto;padding:26px 20px 70px}
-.box{max-width:420px;margin:44px auto;padding:40px 34px;border-radius:28px}.box h2{text-align:center}
-input,select,textarea{font:inherit;font-size:15px;width:100%;padding:13px 16px;margin:4px 0 16px;border:1px solid var(--ln);border-radius:14px;background:rgba(255,255,255,.75);color:var(--fg);outline:0;transition:.2s}
-input:focus,select:focus,textarea:focus{border-color:var(--fg);box-shadow:0 0 0 4px rgba(21,22,26,.06)}input[type=checkbox]{width:auto;margin:0 8px 0 0}
-label{font-size:12px;letter-spacing:.08em;color:var(--mu)}.err{color:var(--err);font-size:13px;min-height:18px}.mu{color:var(--mu);font-size:13px}
-.eyebrow{font-size:11px;letter-spacing:.5em;padding-left:.5em;color:var(--gold);margin-bottom:12px}
-.hero{text-align:center;padding:90px 24px 64px;margin-bottom:36px;border-radius:34px;background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,255,255,.45))}
-.wm{font-family:var(--serif);font-weight:300;font-size:clamp(44px,12vw,96px);letter-spacing:.3em;padding-left:.3em;margin:0 0 18px;line-height:1.05}
-.hero p{color:var(--mu);margin:0 auto 28px;max-width:440px}
-.hl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:34px}.hl span{font-size:11px;letter-spacing:.12em;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.7);border:1px solid var(--ln)}
-.notice{display:block;width:fit-content;max-width:100%;margin:0 auto 22px;padding:8px 18px;border-radius:99px;font-size:12px;color:var(--mu);text-align:center}
-.tabs{display:inline-flex;gap:4px;padding:5px;border-radius:99px;margin-bottom:24px;flex-wrap:wrap}
-.tabs button{background:none;color:var(--mu);border:0;padding:9px 18px;font-weight:400}.tabs button:hover{box-shadow:none;transform:none}.tabs button:not(.o){background:var(--fg);color:#fff}
-.bar2{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}.bar2 input{flex:1;min-width:140px}.bar2 select{width:auto}.bar2 button{margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:26px}@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr);gap:14px}}
-.card{position:relative;padding:10px 10px 16px;border-radius:24px;transition:.3s}.card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(31,41,66,.15),inset 0 1px 0 #fff}
-.imw{overflow:hidden;border-radius:16px;cursor:pointer}.imw .img{transition:.6s}.imw:hover .img{transform:scale(1.04)}
-.card b{display:block;margin:14px 6px 2px;font-weight:500;font-size:14px}.card>.mu{margin-left:6px;font-size:14px;color:var(--fg)}.card>.tag{margin-left:6px}
-.img{aspect-ratio:4/5;width:100%;object-fit:cover;display:block;background:#e6e9ef}
-.ph{display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:72px;font-weight:300;color:rgba(21,22,26,.18);background:linear-gradient(160deg,#eef0f5,#dfe3ea)}
-.hrt{position:absolute;top:20px;right:20px;width:36px;height:36px;padding:0;border-radius:50%;background:rgba(255,255,255,.85);color:var(--fg);border:1px solid #fff;font-size:16px}
-.two>.img,.two>div>.img{border-radius:26px;box-shadow:0 20px 60px rgba(31,41,66,.15)}
-.tag{display:inline-block;font-size:10px;letter-spacing:.12em;padding:2px 9px;border:1px solid rgba(21,22,26,.25);border-radius:99px;vertical-align:middle;color:var(--fg)}
-.t-VIP,.t-ADMIN{background:var(--fg);color:#fff;border-color:var(--fg)}.t-DIAMOND{border-color:#3f7fae;color:#3f7fae}.t-SILVER{border-color:#8d939b;color:#6d737b}.t-BRONZE{border-color:#a06a3b;color:#a06a3b}
-.sws,.szs{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 18px}
-.sw{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.15);cursor:pointer}.sw.on{outline:2px solid var(--fg);outline-offset:3px}
-.sz{padding:9px 18px;background:rgba(255,255,255,.6);color:var(--fg);border:1px solid var(--ln)}.sz.on{background:var(--fg);color:#fff}
-.tier{padding:24px;margin-bottom:20px;border-radius:22px}
-.post{border-bottom:1px solid var(--ln);padding:16px 0}.post a{font-size:12px}
-.bar{height:6px;border-radius:9px;background:var(--ln);margin:12px 0}.bar i{display:block;height:100%;border-radius:9px;background:var(--fg)}
-.tw{overflow-x:auto;border-radius:20px;padding:6px 14px}table{border-collapse:collapse;width:100%;min-width:560px}td,th{border-bottom:1px solid var(--ln);padding:12px 8px;text-align:left;font-size:14px}th{color:var(--mu);font-weight:400;font-size:12px;letter-spacing:.08em}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:44px}@media(max-width:640px){.two{grid-template-columns:1fr;gap:22px}}
-.pol h4{margin:22px 0 4px}.pol p,.pol li{font-size:14px;color:#444}.pol ul{padding-left:18px;margin:4px 0}
-.ck{display:flex;align-items:flex-start;gap:8px;margin:6px 0 14px;font-size:13px}.ck input{width:auto;margin:5px 0 0}
-.stp{display:flex;gap:4px;margin:10px 0}.stp span{flex:1;text-align:center;font-size:11px;padding:6px 0;border-top:2px solid var(--ln);color:var(--mu)}.stp span.on{border-color:var(--fg);color:var(--fg)}
-.rimg{max-width:180px;max-height:220px;display:block;margin:8px 0;border-radius:12px;cursor:zoom-in}.rimg.big{max-width:100%;max-height:none;cursor:zoom-out}
-a{color:inherit}footer{text-align:center;font-size:11px;letter-spacing:.3em;color:var(--mu);padding:28px 0 40px}footer a{color:var(--mu)}
-@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}main>*{animation:up .5s ease both}
-@media(prefers-reduced-motion:reduce){main>*{animation:none}}
-/* ===== GLASS BUTTONS + WARDROBE ===== */
-button{background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,0) 52%),rgba(24,26,34,.82);color:#fff;border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);box-shadow:inset 0 1px 1px rgba(255,255,255,.65),inset 0 -10px 16px rgba(255,255,255,.05),0 10px 26px rgba(24,26,34,.22)}
-button.o{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.22)),rgba(255,255,255,.35);color:var(--fg);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 1px 1px #fff,0 8px 22px rgba(31,41,66,.12)}
-button:hover{box-shadow:inset 0 1px 1px rgba(255,255,255,.7),0 14px 30px rgba(24,26,34,.28)}button.o:hover{box-shadow:inset 0 1px 1px #fff,0 12px 28px rgba(31,41,66,.18);opacity:1}
-nav button.o{border-color:rgba(255,255,255,.95)}
-.tabs button.o{background:none;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--mu)}
-input,select,textarea{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 2px 6px rgba(31,41,66,.06);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.sz{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.25));-webkit-backdrop-filter:none;backdrop-filter:none}.sz.on{background:rgba(24,26,34,.85)}
-.hrt{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background:rgba(255,255,255,.55)}
-.ward{position:relative;margin-bottom:34px;padding:26px 0 0;border-radius:32px;text-align:center;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 40px rgba(31,41,66,.09),inset 0 1px 0 #fff;-webkit-backdrop-filter:none;backdrop-filter:none}
-.ward h3{margin:0 0 4px}
-.wscroll{overflow-x:auto;perspective:1300px;perspective-origin:50% 0;padding:14px 24px 56px;scrollbar-width:none;text-align:left}
+/* ================= VALIENS · store ================= */
+:root{
+ --ink:#111;--tx:#2b2b2b;--mu:#767676;--mu2:#a3a3a3;
+ --ln:#e8e8e8;--ln2:#d4d4d4;--soft:#f5f4f1;--img:#efeeea;--err:#d0312d;
+ --fg:var(--ink);--gold:var(--ink);
+ --wrap:1280px;--gut:40px;--hh:64px;
+ --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:#fff;color:var(--tx);font:400 15px/1.65 var(--sans);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;word-break:keep-all;overflow-wrap:break-word;overflow-x:clip;padding-top:env(safe-area-inset-top,0)}
+body.menu{overflow:hidden}
+a{color:inherit;text-underline-offset:3px}
+img{max-width:100%;display:block}
+p{margin:0 0 1em}
+h1,h2,h3,h4,h5{color:var(--ink);font-weight:700;letter-spacing:-.025em;line-height:1.3;margin:0 0 .5em}
+.wrap{max-width:calc(var(--wrap) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.lb{display:block;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-bottom:12px}
+.mu{color:var(--mu);font-size:14px}
+.err{color:var(--err);font-size:13px;min-height:20px;margin:-8px 0 10px}
+
+/* ---------- buttons ---------- */
+button{font:600 14px/1 var(--sans);letter-spacing:-.01em;height:48px;padding:0 28px;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;vertical-align:middle;transition:background-color .2s,color .2s,border-color .2s}
+button:hover{background:#333;border-color:#333}
+button.o{background:#fff;color:var(--ink);border-color:var(--ln2)}
+button.o:hover{background:#fff;border-color:var(--ink)}
+button:disabled{opacity:.4;cursor:default}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button.full{width:100%}
+.tx{height:auto;padding:6px 0;background:none;border:0;color:var(--tx);font-weight:500;font-size:13px;border-radius:0}
+.tx:hover{background:none;color:var(--ink);text-decoration:underline;text-underline-offset:5px}
+.ib{position:relative;width:40px;height:40px;padding:0;background:none;border:0;color:var(--ink);border-radius:0}
+.ib:hover{background:none}
+.ib svg{width:22px;height:22px}
+.x{height:auto;padding:0;background:none;border:0;color:var(--mu);font-size:13px;font-weight:400;text-decoration:underline;text-underline-offset:3px;border-radius:0}
+.x:hover{background:none;color:var(--ink)}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 6px;border:1px solid var(--ink);color:var(--ink);line-height:1;vertical-align:1px;border-radius:2px}
+.t-VIP,.t-ADMIN{background:var(--ink);color:#fff}
+
+/* ---------- forms ---------- */
+input,select,textarea{font:400 15px/1.4 var(--sans);letter-spacing:-.01em;width:100%;height:48px;padding:0 14px;margin:6px 0 18px;border:1px solid var(--ln2);border-radius:2px;background:#fff;color:var(--ink);outline:0;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+textarea{height:auto;min-height:120px;padding:12px 14px;resize:vertical;line-height:1.6}
+input:hover,select:hover,textarea:hover{border-color:#aaa}
+input:focus,select:focus,textarea:focus{border-color:var(--ink)}
+input::placeholder,textarea::placeholder{color:var(--mu2)}
+select{padding-right:40px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23111' stroke-width='1.4'/%3E%3C/svg%3E") right 14px center/11px no-repeat}
+input[type=checkbox]{-webkit-appearance:auto;appearance:auto;width:16px;height:16px;margin:0 8px 0 0;padding:0;accent-color:#111;flex:none}
+input[type=file]{height:auto;padding:10px;font-size:13px;color:var(--mu);cursor:pointer}
+input[type=file]::file-selector-button{font:500 13px var(--sans);margin-right:12px;padding:8px 14px;border:1px solid var(--ln2);background:#fff;color:var(--ink);border-radius:2px;cursor:pointer}
+label{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+label:has(>input[type=checkbox]){display:flex;align-items:center;font-weight:400;color:var(--tx);margin:4px 0 18px;cursor:pointer}
+.ck{align-items:flex-start!important;font-size:13px;line-height:1.6}.ck input{margin-top:3px}
+.ck a{color:var(--ink)}
+
+/* ---------- top bar + header ---------- */
+.topbar{background:var(--ink);color:#fff;font-size:12px;letter-spacing:.01em;text-align:center;padding:9px 16px;line-height:1.45}
+.topbar:empty{display:none}
+header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid var(--ln)}
+.hd{height:var(--hh);display:flex;align-items:center;gap:48px}
+.logo{font-size:19px;font-weight:800;letter-spacing:.34em;margin-right:-.34em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.gnb{display:flex;align-items:center;gap:32px;flex:1}
+.gnb>button{height:auto;padding:6px 0;background:none;border:0;border-radius:0;color:var(--ink);font-size:13px;font-weight:600;letter-spacing:.1em}
+.gnb>button:hover{background:none;text-decoration:underline;text-underline-offset:7px}
+.gnb .cls,.gnb .mg{display:none}
+.util{display:flex;align-items:center;gap:20px;margin-left:auto}
+.util .ib{margin:0 -8px 0 -4px}
+.cnt{position:absolute;top:3px;right:1px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--ink);color:#fff;font-size:10px;font-weight:700;line-height:17px;text-align:center;letter-spacing:0}
+.mnu{display:none}
+.scrim{display:none}
+
+/* ---------- page shell ---------- */
+main{min-height:62vh}
+#app:not([data-v=home]){max-width:calc(var(--wrap) + var(--gut)*2);margin:0 auto;padding:56px var(--gut) 120px}
+#app[data-v=orders],#app[data-v=my],#app[data-v=privacy],#app[data-v=addp],#app[data-v=site]{max-width:calc(860px + var(--gut)*2)}
+#app[data-v=cart],#app[data-v=checkout]{max-width:calc(1120px + var(--gut)*2)}
+.pt{font-size:clamp(26px,3vw,34px);margin:0 0 36px;display:flex;align-items:baseline;gap:10px}
+.pt span{font-size:15px;color:var(--mu);font-weight:500;letter-spacing:0}
+.h3{font-size:17px;margin:0 0 16px}
+.empty{padding:96px 0;text-align:center;border-top:1px solid var(--ink)}
+.empty p{color:var(--mu);margin-bottom:24px}
+.loading{padding:160px 0;text-align:center;color:var(--mu2);font-size:13px;letter-spacing:.2em}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:calc(100svh - var(--hh) - 36px);min-height:560px;max-height:900px;background:#161616;color:#fff;overflow:hidden;display:flex;align-items:flex-end}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.5))}
+.hero.noimg::after{background:none}
+.hero>img.mark{inset:auto;right:7%;top:50%;width:min(44vw,600px);height:auto;object-fit:contain;transform:translateY(-56%);opacity:.92}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-bottom:80px}
+.hero h1{color:#fff;font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-.035em;line-height:1.2;max-width:13em;white-space:pre-line;margin:0 0 20px}
+.hero p{font-size:17px;line-height:1.7;color:rgba(255,255,255,.86);max-width:30em;margin:0 0 36px;white-space:pre-line}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.hero button{background:#fff;color:var(--ink);border-color:#fff;min-width:160px;letter-spacing:.06em}
+.hero button:hover{background:#e9e9e9;border-color:#e9e9e9}
+.hero button.o{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.hero button.o:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.edit{position:absolute;top:16px;right:16px;z-index:3;height:34px;padding:0 14px;font-size:12px;background:#fff;color:var(--ink);border-color:var(--ln2)}
+.edit:hover{background:#fff;border-color:var(--ink)}
+
+/* ---------- sections ---------- */
+.sec{padding:104px 0;scroll-margin-top:var(--hh)}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px 32px;flex-wrap:wrap;margin-bottom:36px}
+.sh h2{font-size:clamp(24px,2.6vw,32px);margin:0}
+.sh .mu{margin:0}
+.cnt2{font-size:15px;color:var(--mu);font-weight:500;margin-left:6px;letter-spacing:0}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tools input,.tools select{margin:0;height:42px;font-size:14px}
+.tools #q{width:240px;padding-left:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='1.6'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") 13px center/17px no-repeat}
+.tools select{width:auto;min-width:132px}
+.tools button{height:42px;padding:0 16px;font-size:13px;font-weight:500}
+.tools button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}
+.tools button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tools button.on svg{fill:currentColor}
+
+/* ---------- product grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:52px 20px}
+.grid>.mu{grid-column:1/-1;padding:96px 0;text-align:center;border-top:1px solid var(--ln)}
+.card{position:relative}
+.imw{position:relative;overflow:hidden;background:var(--img);cursor:pointer}
+.img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--img)}
+.imw .img{transition:transform 1.2s var(--ease)}
+.card:hover .imw .img{transform:scale(1.035)}
+.ph{display:flex;align-items:center;justify-content:center}
+.ph img{width:44%;opacity:.13}
+.img.cut{object-fit:contain}
+.badge{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:5px 7px;line-height:1}
+.hrt{position:absolute;top:6px;right:6px;width:40px;height:40px;padding:0;background:transparent;border:0;color:var(--ink);border-radius:0}
+.hrt:hover{background:transparent}
+.hrt svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;transition:transform .2s}
+.hrt:hover svg{transform:scale(1.1)}
+.hrt.on svg,.wish.on svg{fill:currentColor}
+.ci{padding:16px 2px 0}
+.ci b{display:block;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;line-height:1.45}
+.ci .pr{display:block;margin-top:5px;font-size:14px;font-weight:700;color:var(--ink);letter-spacing:0}
+
+/* ---------- brand story ---------- */
+.about{background:var(--soft)}
+.ab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:96px;align-items:center}
+.ab-img{position:relative;aspect-ratio:4/5;background:var(--img);overflow:hidden}
+.ab-img>img{width:100%;height:100%;object-fit:cover}
+.ab-img.ph>img{width:46%;height:auto;opacity:.13}
+.ab h2{font-size:clamp(26px,3vw,40px);line-height:1.35;margin:0 0 28px;white-space:pre-line}
+.ab .body{white-space:pre-line;font-size:16px;line-height:1.95;color:var(--tx);max-width:32em}
+
+/* ---------- wardrobe ---------- */
+.ward{padding-bottom:0;overflow:hidden}
+.wscroll{overflow-x:auto;perspective:1300px;perspective-origin:50% 0;padding:20px var(--gut) 80px;scrollbar-width:none}
 .wscroll::-webkit-scrollbar{display:none}
 .wi{display:flex;width:max-content;min-width:100%;position:relative;padding-top:10px}
-.wi::before{content:"";position:absolute;left:0;right:0;top:8px;height:7px;border-radius:9px;background:linear-gradient(#fff,#b4bac6 60%,#eef0f4);box-shadow:0 3px 10px rgba(31,41,66,.25)}
-.hg{width:104px;flex:none;position:relative;cursor:pointer;margin:0 6px}
+.wi::before{content:"";position:absolute;left:0;right:0;top:8px;height:5px;border-radius:9px;background:linear-gradient(180deg,#d9d9d9,#8f8f8f 55%,#5d5d5d);box-shadow:0 3px 6px rgba(0,0,0,.18)}
+.hg{width:112px;flex:none;position:relative;cursor:pointer;margin:0 6px}
 .hg:first-child{margin-left:auto}.hg:last-child{margin-right:auto}
 .hgr{transform-origin:50% 0;transform:rotateY(-72deg);transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .6s,filter .6s}
 .hg:hover,.hg.front{z-index:4}
@@ -84,23 +170,263 @@ input,select,textarea{background:rgba(255,255,255,.5);border:1px solid rgba(255,
 .hgi{transform-origin:50% 0;animation:swing 4s ease-in-out infinite alternate;animation-delay:calc(var(--i)*-.6s)}
 @keyframes swing{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
 .hk{display:block;margin:0 auto -4px}
-.gm{border-radius:14px;overflow:hidden;border:1px solid #fff;background:#fff;box-shadow:0 14px 30px rgba(31,41,66,.22)}.gm .img{aspect-ratio:3/4}.gm .ph{font-size:46px}
-.gl{margin-top:8px;font-size:11px;text-align:center;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dive{position:fixed;z-index:100;border-radius:14px;pointer-events:none;transition:left .7s cubic-bezier(.7,0,.2,1),top .7s cubic-bezier(.7,0,.2,1),width .7s cubic-bezier(.7,0,.2,1),height .7s cubic-bezier(.7,0,.2,1),border-radius .7s}
-.dive.go{left:0!important;top:0!important;width:100vw!important;height:100vh!important;border-radius:0}
+.gm{overflow:hidden;background:#fff;box-shadow:0 14px 26px rgba(0,0,0,.14)}
+.gm .img{aspect-ratio:3/4}
+.gl{margin-top:10px;font-size:11px;text-align:center;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gm:has(.cut){background:none;box-shadow:none;overflow:visible}
+.gm .img.cut{filter:drop-shadow(0 14px 14px rgba(0,0,0,.22))}
+.dive{position:fixed;z-index:100;pointer-events:none;transition:left .7s cubic-bezier(.7,0,.2,1),top .7s cubic-bezier(.7,0,.2,1),width .7s cubic-bezier(.7,0,.2,1),height .7s cubic-bezier(.7,0,.2,1)}
+.dive.go{left:0!important;top:0!important;width:100vw!important;height:100vh!important}
 .dive.out{opacity:0;transition:opacity .5s}
-.img.cut{object-fit:contain;background:none}
-.card .img.cut,.two>.img.cut,.two>div>.img.cut{background:linear-gradient(160deg,#f1f3f7,#e3e7ee)}
-.gm:has(.cut){background:none;border:0;box-shadow:none;overflow:visible}
-.gm .img.cut{filter:drop-shadow(0 14px 14px rgba(31,41,66,.28))}
-@media(max-width:560px){.hg{width:92px}}
-@media(prefers-reduced-motion:reduce){.hgi{animation:none}}
+
+/* ---------- membership ---------- */
+.member{background:var(--soft)}
+.tiers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink)}
+.tiers>div{padding:26px 22px 30px;border-right:1px solid var(--ln2);border-bottom:1px solid var(--ln2)}
+.tiers>div:last-child{border-right:0}
+.tiers b{display:block;font-size:12px;letter-spacing:.14em;color:var(--ink);margin-bottom:32px}
+.tiers strong{display:block;font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.03em;margin-bottom:6px}
+.tiers span{font-size:13px;color:var(--mu)}
+.tiers .me{background:#fff}
+.tiers .me b::after{content:"MY";margin-left:8px;padding:2px 5px;background:var(--ink);color:#fff;font-size:9px;letter-spacing:.08em}
+.mnote{margin:22px 0 0;font-size:13px;color:var(--mu)}
+
+/* ---------- footer ---------- */
+footer{background:#111;color:#a3a3a3;font-size:13px;line-height:1.85}
+.ft{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-top:80px;padding-bottom:56px}
+.ft img{width:118px;margin-bottom:22px}
+.ft p{margin:0;max-width:22em}
+.ft h5{color:#fff;font-size:11px;font-weight:600;letter-spacing:.16em;margin:0 0 16px}
+.ft .big{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.ft b{color:#fff;font-weight:600}
+.fl{display:block;height:auto;line-height:1.6;padding:4px 0;background:none;border:0;border-radius:0;color:#a3a3a3;font-weight:400;font-size:13px;letter-spacing:0;text-align:left}
+.fl:hover{background:none;color:#fff}
+.fl.st{color:#fff;font-weight:600}
+.fbt{border-top:1px solid #2b2b2b;padding-top:24px;padding-bottom:44px;font-size:12px;color:#7a7a7a;display:flex;flex-direction:column;gap:6px}
+.biz:empty{display:none}
+.biz span{display:inline-block}
+.biz span+span::before{content:"|";margin:0 10px;color:#3d3d3d}
+
+/* ---------- product detail ---------- */
+.pd{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:80px;align-items:start}
+.pd-img .img{aspect-ratio:3/4}
+.pd-info{position:sticky;top:calc(var(--hh) + 32px)}
+.crumb{font-size:12px;color:var(--mu);margin-bottom:22px;letter-spacing:.02em}
+.crumb a{color:var(--mu);text-decoration:none}.crumb a:hover{color:var(--ink)}
+.pd-info h1{font-size:clamp(22px,2.2vw,28px);margin:0 0 12px}
+.pd-price{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:0}
+.pd-note{margin:10px 0 0;font-size:13px;color:var(--mu)}
+.pd-note b{color:var(--ink)}
+.pd-note a{color:var(--ink)}
+.pd-desc{margin:28px 0;padding:24px 0;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);white-space:pre-wrap;font-size:14px;line-height:1.85}
+.pd-gap{height:32px}
+.opt-l{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.opt-l span{font-weight:400;color:var(--mu);margin-left:6px}
+.sws,.szs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}
+.sw{width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.16);cursor:pointer;transition:box-shadow .15s}
+.sw.on{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ink)}
+.sz{min-width:58px;height:42px;padding:0 14px;background:#fff;color:var(--ink);border:1px solid var(--ln2);font-weight:500}
+.sz:hover{background:#fff;border-color:var(--ink)}
+.sz.on,.sz.on:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.buy{display:grid;grid-template-columns:1fr 1fr 52px;gap:8px}
+.buy button{height:54px}
+.wish{padding:0}
+.wish svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+.lockmsg{padding:18px;background:var(--soft);font-size:14px;color:var(--ink)}
+details{border-bottom:1px solid var(--ln)}
+details.first{border-top:1px solid var(--ln);margin-top:40px}
+summary{list-style:none;cursor:pointer;padding:18px 0;font-size:14px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:9px;height:9px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+details[open] summary::after{transform:rotate(-135deg)}
+details>div{padding:0 0 22px;font-size:14px;color:var(--tx);white-space:pre-line;line-height:1.85}
+.rvs{margin-top:112px;border-top:1px solid var(--ink);padding-top:36px}
+.avg{font-size:15px;font-weight:600;color:var(--ink)}
+
+/* ---------- posts / board ---------- */
+.post{padding:24px 0;border-bottom:1px solid var(--ln)}
+.post .st{color:var(--ink);letter-spacing:2px;font-size:12px;margin-bottom:6px}
+.post b{color:var(--ink);font-weight:600;font-size:15px}
+.post .pn{display:block;font-size:12px;color:var(--mu);margin-top:2px}
+.post p{margin:10px 0 0;white-space:pre-wrap;font-size:14px;line-height:1.8}
+.post .meta{margin-top:12px;font-size:12px;color:var(--mu2)}
+.post .del{color:var(--err);margin-left:8px}
+.rimg{max-width:180px;max-height:220px;margin:14px 0 0;cursor:zoom-in}
+.rimg.big{max-width:100%;max-height:none;cursor:zoom-out}
+.tabs{display:flex;gap:32px;border-bottom:1px solid var(--ln);margin-bottom:40px}
+.tabs button{height:auto;padding:0 0 14px;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--mu);font-weight:600;border-radius:0}
+.tabs button:hover{background:none;color:var(--ink)}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--ink)}
+.board{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:72px;align-items:start}
+.feed .post:first-child{padding-top:0}
+.panel{background:var(--soft);padding:32px;position:sticky;top:calc(var(--hh) + 24px)}
+.panel h3{font-size:18px;margin-bottom:6px}
+.panel>p.mu{margin:0 0 24px;font-size:13px}
+
+/* ---------- cart / checkout ---------- */
+.co{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:64px;align-items:start}
+.line{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:20px;padding:20px 0;border-bottom:1px solid var(--ln);align-items:start}
+.lines>.line:first-child{border-top:1px solid var(--ink)}
+.th{cursor:pointer;background:var(--img)}
+.li b{display:block;font-weight:500;color:var(--ink);font-size:15px}
+.li span{display:block;font-size:13px;color:var(--mu);margin-top:4px}
+.li .pr{color:var(--ink);font-weight:700;font-size:14px;margin-top:12px}
+.sum{background:var(--soft);padding:30px;position:sticky;top:calc(var(--hh) + 24px)}
+.sum h3{font-size:16px;margin-bottom:18px}
+.row{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:6px 0;color:var(--tx)}
+.row.t{border-top:1px solid var(--ln2);margin-top:14px;padding-top:18px;font-weight:700;color:var(--ink);font-size:17px}
+.sum>button{width:100%;margin-top:22px;height:54px}
+.sum>button.o{margin-top:8px;height:48px}
+.bank{margin-top:20px;padding:16px 18px;border:1px solid var(--ln2);background:#fff;font-size:13px;line-height:1.85;color:var(--tx)}
+.bank b{color:var(--ink)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+
+/* ---------- orders / grade / tables ---------- */
+.ord{border:1px solid var(--ln);padding:26px;margin-bottom:16px}
+.ord-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--mu)}
+.ord-h b{color:var(--ink);font-size:14px;margin-right:6px}
+.stt{font-weight:700;color:var(--ink)}
+.oi{font-size:14px;color:var(--ink);line-height:1.8}
+.ord-f{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--ln);font-size:13px;color:var(--mu)}
+.ord-f b{color:var(--ink)}
+.ord .bank{margin-top:14px}
+.stp{display:flex;gap:4px;margin:18px 0}
+.stp span{flex:1;font-size:12px;padding-top:10px;border-top:2px solid var(--ln);color:var(--mu2)}
+.stp span.on{border-color:var(--ink);color:var(--ink);font-weight:600}
+.tier{border:1px solid var(--ink);padding:36px;margin-bottom:24px}
+.tier h2{font-size:44px;letter-spacing:.02em;margin:0 0 6px}
+.bar{height:4px;background:var(--ln);margin:26px 0 10px}
+.bar i{display:block;height:100%;background:var(--ink)}
+.tw{overflow-x:auto;border-top:1px solid var(--ink)}
+table{border-collapse:collapse;width:100%;min-width:640px}
+td,th{border-bottom:1px solid var(--ln);padding:15px 10px;text-align:left;font-size:14px;vertical-align:top}
+th{font-size:12px;font-weight:600;color:var(--mu)}
+td select,td input{margin:0 0 6px;height:38px;font-size:13px}
+td button{height:36px;padding:0 14px;font-size:13px}
+.adm h2{font-size:22px;margin:56px 0 18px}
+.adm h2:first-of-type{margin-top:0}
+
+/* ---------- auth ---------- */
+.auth{max-width:420px;margin:24px auto 0}
+.auth .lb{text-align:center}
+.auth h1{font-size:30px;text-align:center;margin-bottom:10px}
+.auth .sub{text-align:center;color:var(--mu);font-size:14px;margin:0 0 40px}
+.or{display:flex;align-items:center;gap:14px;color:var(--mu2);font-size:12px;margin:14px 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--ln)}
+.alt{display:flex;justify-content:center;gap:14px;margin-top:22px;font-size:13px;color:var(--mu)}
+.alt a{color:var(--ink);font-weight:600}
+.alt.s a{color:var(--mu);font-weight:400}
+
+/* ---------- admin: site settings ---------- */
+.fs{border-top:1px solid var(--ink);padding:28px 0 10px;margin-top:28px}
+.fs h3{font-size:17px;margin-bottom:6px}
+.fs>p.mu{font-size:13px;margin:0 0 18px}
+.prev{width:150px;aspect-ratio:4/5;object-fit:cover;background:var(--img);margin:8px 0 10px}
+.prev.w{width:260px;aspect-ratio:16/9}
+.save{position:sticky;bottom:0;z-index:5;background:#fff;border-top:1px solid var(--ln);padding:16px 0 calc(16px + env(safe-area-inset-bottom,0));margin-top:24px;display:flex;gap:16px;align-items:center}
+.save .err{margin:0;flex:1}
+
+/* ---------- policy ---------- */
+.back{height:auto;padding:0;background:none;border:0;color:var(--mu);font-size:13px;font-weight:500;margin-bottom:28px;border-radius:0}
+.back:hover{background:none;color:var(--ink)}
+.pol h4{font-size:16px;margin:36px 0 8px}
+.pol p,.pol li{font-size:14px;line-height:1.85;color:var(--tx)}
+.pol ul{padding-left:20px;margin:6px 0}
+
+/* ---------- modal + toast ---------- */
+.modal{position:fixed;inset:0;z-index:200;background:rgba(17,17,17,.5);display:flex;align-items:center;justify-content:center;padding:20px;animation:fd .18s ease}
+.modal[hidden]{display:none}
+.mb{background:#fff;width:100%;max-width:380px;padding:36px 28px 24px;text-align:center;animation:pop .22s var(--ease)}
+.mb h3{font-size:17px;margin:0 0 8px}
+.mb p{color:var(--mu);font-size:14px;margin:0 0 28px}
+.ma{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@keyframes fd{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.toast{position:fixed;left:50%;bottom:calc(32px + env(safe-area-inset-bottom,0));z-index:210;transform:translate(-50%,16px);background:var(--ink);color:#fff;padding:14px 22px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- motion ---------- */
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#app:not([data-v=home])>*{animation:up .5s var(--ease) both}
+.hero .wrap>*{animation:up .9s var(--ease) both}.hero .wrap>*:nth-child(2){animation-delay:.08s}.hero .wrap>*:nth-child(3){animation-delay:.16s}
+
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+ :root{--gut:28px}
+ .hd{gap:32px}.gnb{gap:24px}
+ .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .ab{gap:56px}.pd{gap:48px}
+ .board,.co{grid-template-columns:1fr;gap:48px}.panel,.sum{position:static}
+ .ft{grid-template-columns:1fr 1fr}
+ .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}.tiers>div:nth-child(3){border-right:0}
+}
+@media(max-width:820px){
+ :root{--gut:16px;--hh:56px}
+ .hd{gap:4px;position:relative}
+ .mnu{display:inline-flex;margin-left:-8px}
+ .logo{position:absolute;left:50%;transform:translateX(-50%);font-size:16px;margin:0;padding-left:.34em}
+ .util{gap:14px}.util .d{display:none}
+ .gnb{position:fixed;z-index:80;top:0;left:0;bottom:0;width:min(84vw,340px);background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:64px 24px 32px;overflow-y:auto;transform:translateX(-102%);transition:transform .32s var(--ease),visibility 0s .32s;visibility:hidden}
+ body.menu .gnb{transform:none;visibility:visible;transition:transform .32s var(--ease)}
+ .gnb>button{padding:16px 0;font-size:15px;text-align:left;justify-content:flex-start;border-bottom:1px solid var(--ln);letter-spacing:.08em}
+ .gnb>button:hover{text-decoration:none}
+ .gnb .cls{display:inline-flex;position:absolute;top:8px;right:12px;border:0;padding:0}
+ .gnb .mg{display:flex;flex-direction:column;margin-top:28px}
+ .gnb .mg button{height:auto;padding:11px 0;background:none;border:0;color:var(--tx);font-size:14px;font-weight:500;text-align:left;justify-content:flex-start;border-radius:0}
+ .scrim{display:block;position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.42);opacity:0;pointer-events:none;transition:opacity .3s}
+ body.menu .scrim{opacity:1;pointer-events:auto}
+ body.menu header{z-index:90}
+ #app:not([data-v=home]){padding:36px var(--gut) 96px}
+ .hero{height:auto;min-height:calc(100svh - var(--hh) - 36px);max-height:none}
+ .hero>img.mark{right:auto;left:50%;top:38%;width:min(72vw,360px);transform:translate(-50%,-50%)}
+ .hero .wrap{padding-bottom:48px}
+ .hero p{font-size:15px}
+ .hero .acts button{flex:1;min-width:0;padding:0 12px}
+ .sec{padding:72px 0}
+ .sh{margin-bottom:28px}
+ .tools{width:100%}.tools #q{flex:1 1 100%;width:auto}.tools select{flex:1}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 10px}
+ .ci{padding-top:12px}.ci b,.ci .pr{font-size:13px}
+ .hrt{top:2px;right:2px}
+ .ab{grid-template-columns:1fr;gap:36px}
+ .ab .body{font-size:15px}
+ .hg{width:94px}
+ .tiers{grid-template-columns:1fr 1fr}.tiers>div{padding:20px 16px 22px}.tiers>div:nth-child(3){border-right:1px solid var(--ln2)}.tiers>div:nth-child(2n){border-right:0}
+ .tiers b{margin-bottom:20px}.tiers strong{font-size:17px}
+ .ft{grid-template-columns:1fr 1fr;gap:36px 24px;padding-top:56px}.ft>div:first-child{grid-column:1/-1}
+ .pd{grid-template-columns:1fr;gap:28px}.pd-img{margin:0 calc(var(--gut)*-1)}.pd-info{position:static}
+ #app[data-v=detail]{padding-top:0}
+ .rvs{margin-top:72px}
+ .line{grid-template-columns:80px minmax(0,1fr) auto;gap:14px}
+ .g2{grid-template-columns:1fr}
+ .tier{padding:26px}.tier h2{font-size:36px}
+ .ord{padding:20px}
+ .panel,.sum{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header><div class="logo" onclick="A.go('home')">VALIENS</div><nav id="nav"></nav></header>
-<main id="app"><p class="mu">불러오는 중…</p></main>
-<footer>VALIENS · EST. 2026<br><a href="#" onclick="A.go('privacy');return false">개인정보 처리방침</a></footer>
+<div class="topbar" id="topbar"></div>
+<header><div class="wrap hd">
+ <button class="ib mnu" onclick="A.menu(true)" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+ <a class="logo" href="#" onclick="A.go('home');return false">VALIENS</a>
+ <nav class="gnb" id="gnb" aria-label="주 메뉴"><button>SHOP</button><button>ABOUT</button><button>REVIEW</button><button>Q&amp;A</button></nav>
+ <div class="util" id="nav"></div>
+</div></header>
+<div class="scrim" onclick="A.menu(false)"></div>
+<main id="app"><p class="loading">LOADING</p></main>
+<footer>
+ <div class="wrap ft">
+  <div><img src="logo-white.png" alt="VALIENS"><p id="ftag"></p></div>
+  <div><h5>CUSTOMER CARE</h5><div id="fcs"></div></div>
+  <div><h5>BANK ACCOUNT</h5><div id="fbank"></div></div>
+  <div><h5>MENU</h5><button class="fl" onclick="A.sec('shop')">전체 상품</button><button class="fl" onclick="A.sec('about')">브랜드 소개</button><button class="fl" onclick="A.board('review')">리뷰</button><button class="fl" onclick="A.board('qna')">문의사항</button><button class="fl" onclick="A.go('orders')">주문조회</button><button class="fl st" onclick="A.go('privacy')">개인정보 처리방침</button></div>
+ </div>
+ <div class="wrap fbt"><div class="biz" id="fbiz"></div><div>© 2026 VALIENS. All rights reserved.</div></div>
+</footer>
+<div id="modal" class="modal" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword as mk,signInWithEmailAndPassword as lg,signOut,deleteUser,onAuthStateChanged as on,GoogleAuthProvider,signInWithPopup}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -116,76 +442,165 @@ const app=initializeApp(CFG),au=getAuth(app),db=getFirestore(app);
 const $=i=>document.getElementById(i),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const won=n=>Number(n).toLocaleString('ko-KR')+'원';
 const TIERS=[{n:'BRONZE',min:0,d:0,perk:'기본 등급'},{n:'SILVER',min:50000,d:5,perk:'전 상품 5% 할인'},{n:'GOLD',min:100000,d:10,perk:'전 상품 10% 할인'},{n:'DIAMOND',min:300000,d:15,perk:'전 상품 15% 할인'},{n:'VIP',min:700000,d:15,perk:'15% 할인 + 신상 무료'}];
-const tierOf=p=>[...TIERS].reverse().find(t=>p>=t.min);
+const tierOf=p=>[...TIERS].reverse().find(t=>(p||0)>=t.min);
 const CMAP={'블랙':'#111','화이트':'#f4f2ee','그레이':'#8a8a8a','차콜':'#3a3a3a','네이비':'#1f2a44','베이지':'#cdbb9d','브라운':'#6b4a35','카키':'#5b5f45','버건디':'#6e1f2b','블루':'#3d5f8f'};
 const DCOL=['블랙','화이트','그레이'],DSZ=['S','M','L','XL'];
 const optTxt=k=>{const[,c,z]=k.split('|');return c?c+' / '+z+' · ':''};
 const stars=n=>'★'.repeat(n)+'☆'.repeat(5-n);
-let U=null,P=[],S={v:'home',pid:null,tab:'qna',color:null,size:null,co:[],nc:[],ns:[]},cart=JSON.parse(localStorage.getItem('c')||'[]');
+let U=null,P=[],S={v:'home',pid:null,tab:'review',color:null,size:null,co:[],nc:[],ns:[],back:null},cart=JSON.parse(localStorage.getItem('c')||'[]');
 const saveCart=()=>localStorage.setItem('c',JSON.stringify(cart));
-let W=JSON.parse(localStorage.getItem('w')||'[]'),SORT='new',ONLYW=false,Q='';
+let W=JSON.parse(localStorage.getItem('w')||'[]'),SORT='new',ONLYW=false,Q='',LERR=false;
 const list=()=>{let l=P.filter(p=>p.name.includes(Q)&&(!ONLYW||W.includes(p.id)));if(SORT==='lo')l=[...l].sort((a,b)=>a.price-b.price);if(SORT==='hi')l=[...l].sort((a,b)=>b.price-a.price);return cards(l)};
 const L=async(c,...q)=>(await getDocs(query(collection(db,c),...q))).docs.map(d=>({id:d.id,...d.data()}));
+const safe=pr=>pr.catch(e=>{console.warn(e);LERR=true;return[]});
 const byAt=(a,b)=>(b.at||'').localeCompare(a.at||'');
 const mail=id=>id.toLowerCase()+'@valiens.app';
-const msg=e=>({'auth/email-already-in-use':'이미 사용 중인 아이디입니다.','auth/invalid-credential':'아이디 또는 비밀번호가 올바르지 않습니다.','auth/weak-password':'비밀번호는 6자 이상이어야 합니다.','auth/invalid-email':'아이디는 영문과 숫자만 사용할 수 있습니다.','permission-denied':'권한이 없습니다.','auth/unauthorized-domain':'Firebase 콘솔 > Authentication > 설정 > 승인된 도메인에 이 사이트 주소를 추가해 주세요.','auth/operation-not-allowed':'Firebase 콘솔 > Authentication > 로그인 방법에서 해당 방식을 사용 설정해 주세요.','auth/requires-recent-login':'다시 로그인한 뒤 시도해 주세요.'}[e.code]||e.message);
-const img=p=>p.img?`<img class="img${/^data:image\/(png|webp)/.test(p.img)?' cut':''}" src="${esc(p.img)}" alt="">`:`<div class="img ph">V</div>`;
-const lock=p=>p.vip&&!U.admin&&tierOf(U.points).n!=='VIP';
+const msg=e=>({'auth/email-already-in-use':'이미 사용 중인 아이디입니다.','auth/invalid-credential':'아이디 또는 비밀번호가 올바르지 않습니다.','auth/weak-password':'비밀번호는 6자 이상이어야 합니다.','auth/invalid-email':'아이디는 영문과 숫자만 사용할 수 있습니다.','permission-denied':'권한이 없습니다.','auth/unauthorized-domain':'Firebase 콘솔 > Authentication > 설정 > 승인된 도메인에 이 사이트 주소를 추가해 주세요.','auth/operation-not-allowed':'Firebase 콘솔 > Authentication > 로그인 방법에서 해당 방식을 사용 설정해 주세요.','auth/requires-recent-login':'다시 로그인한 뒤 시도해 주세요.','auth/too-many-requests':'잠시 후 다시 시도해 주세요.'}[e.code]||e.message);
+const IC={
+ bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1.2 13H6.2L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>',
+ heart:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4z"/></svg>',
+ x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>',
+ g:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.9 3.3-4.8 3.3-8.1z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7H2.1a11 11 0 0 0 0 10l3.7-2.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7l3.7 2.9C6.7 7.3 9.1 5.4 12 5.4z"/></svg>'};
+const img=p=>p.img?`<img class="img${/^data:image\/(png|webp)/.test(p.img)?' cut':''}" src="${esc(p.img)}" alt="${esc(p.name||'')}" loading="lazy">`:`<div class="img ph"><img src="logo-black.png" alt=""></div>`;
+const lock=p=>p.vip&&!(U&&(U.admin||tierOf(U.points).n==='VIP'));
+const PRIV=['cart','checkout','orders','my'],ADM=['admin','addp','site'],AUTHV=['login','signup','gprofile'];
 let ready=false;
 const isG=()=>au.currentUser&&au.currentUser.providerData.some(p=>p.providerId==='google.com');
+const mask=n=>{n=String(n||'');if(U&&U.admin)return n;return n.length<2?n:n.length===2?n[0]+'*':n[0]+'*'.repeat(n.length-2)+n[n.length-1]};
+
+/* ---------- 사이트 문구 (관리자 > 사이트 관리에서 수정) ---------- */
+const DEF={
+ notice:'신규 회원가입 시 BRONZE 등급으로 시작 · 상품별 첫 리뷰 작성 시 1,000P 적립',
+ heroTitle:'유행보다\n오래 입는 옷',
+ heroSub:'좋은 소재와 군더더기 없는 실루엣으로\n매일 손이 가는 기본을 만듭니다.',
+ brandTitle:'오래 입을수록\n더 좋아지는 옷',
+ brandBody:'VALIENS는 계절마다 바뀌는 유행보다, 몇 해가 지나도 다시 꺼내 입게 되는 옷을 생각합니다.\n\n촉감이 좋은 소재를 고르고, 불필요한 장식은 덜어내고, 일상에서 편안하게 움직일 수 있는 실루엣을 찾습니다. 그렇게 만든 옷이 당신의 옷장에서 가장 자주 손이 가는 한 벌이 되기를 바랍니다.',
+ tagline:'유행보다 오래 입는 옷.',
+ ship:'· 입금 확인 후 영업일 기준 1~3일 이내에 출고됩니다.\n· 상품 수령 후 7일 이내에 교환·반품을 신청할 수 있습니다.\n· 단순 변심에 의한 교환·반품은 왕복 배송비가 부과될 수 있습니다.\n· 착용 흔적이 있거나 택을 제거한 상품, 세탁한 상품은 교환·반품이 어렵습니다.\n· 교환·반품 문의는 문의사항 게시판에 남겨 주세요.',
+ bank:'',acct:'1002-0000-0000',holder:'임건우',
+ tel:'',email:MAIL,hours:'',
+ biz:'',ceo:'',bizNo:'',mailNo:'',addr:''};
+const SK=Object.keys(DEF);
+let SITE={...DEF,heroImg:'',brandImg:''};
+async function loadSite(){try{
+ const r=await Promise.all(['main','heroImg','brandImg'].map(k=>getDoc(doc(db,'site',k))));
+ const m=r[0].exists()?r[0].data():{},n={...DEF};SK.forEach(k=>{if(typeof m[k]==='string')n[k]=m[k]});
+ n.heroImg=r[1].exists()?r[1].data().img||'':'';n.brandImg=r[2].exists()?r[2].data().img||'':'';SITE=n}catch(e){console.warn('site settings',e)}}
+const siteP=loadSite();
+const bankHTML=()=>`${SITE.bank?esc(SITE.bank)+' ':''}<b>${esc(SITE.acct)}</b><br>예금주 ${esc(SITE.holder)}`;
+function chrome(){
+ $('topbar').textContent=SITE.notice;$('ftag').textContent=SITE.tagline;
+ $('fcs').innerHTML=(SITE.tel?`<div class="big">${esc(SITE.tel)}</div>`:'')+[SITE.hours,SITE.email].filter(Boolean).map(x=>`<div>${esc(x)}</div>`).join('');
+ $('fbank').innerHTML=SITE.acct?bankHTML():'';
+ $('fbiz').innerHTML=[['상호',SITE.biz],['대표',SITE.ceo],['사업자등록번호',SITE.bizNo],['통신판매업신고',SITE.mailNo],['주소',SITE.addr],['개인정보보호책임자',OP]].filter(x=>x[1]).map(x=>`<span>${x[0]} ${esc(x[1])}</span>`).join('')}
+
+/* ---------- 팝업 / 알림 ---------- */
+const ask=(t,m,ok='확인')=>new Promise(res=>{const el=$('modal');
+ el.innerHTML=`<div class="mb" role="dialog" aria-modal="true" aria-labelledby="mt"><h3 id="mt">${esc(t)}</h3><p>${esc(m)}</p><div class="ma"><button class="o" data-r="0">취소</button><button data-r="1">${esc(ok)}</button></div></div>`;el.hidden=false;
+ const done=v=>{el.hidden=true;el.onclick=null;document.removeEventListener('keydown',k);res(v)},k=e=>{if(e.key==='Escape')done(false)};
+ document.addEventListener('keydown',k);el.onclick=e=>{const b=e.target.closest('[data-r]');if(b)done(b.dataset.r==='1');else if(e.target===el)done(false)};
+ el.querySelector('[data-r="1"]').focus()});
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2400)};
+async function gate(back,x){
+ if(!(await ask('로그인이 필요한 서비스입니다.','로그인하시겠습니까?','로그인')))return;
+ S.back=back||S.v;if(x!==undefined)S.pid=x;S.v='login';draw()}
 
 async function loadU(u){U=null;if(!u)return;
  for(let i=0;i<(u.providerData.some(p=>p.providerId==='google.com')?1:6);i++){const s=await getDoc(doc(db,'users',u.uid));if(s.exists()){U={uid:u.uid,...s.data()};break}await new Promise(r=>setTimeout(r,500))}
  if(U)U.admin=(await getDoc(doc(db,'admins',u.uid))).exists()}
-on(au,async u=>{await loadU(u);ready=true;draw()});
+on(au,async u=>{await loadU(u);await siteP;ready=true;draw()});
 
 const V={};
 async function draw(){
  if(!ready)return;
- if(!U&&isG()&&S.v!=='privacy')S.v='gprofile';else if(!U&&S.v!=='signup'&&S.v!=='privacy')S.v='login';
- if(U&&(S.v==='login'||S.v==='signup'||S.v==='gprofile'))S.v='home';
- if(U&&!U.admin&&(S.v==='admin'||S.v==='addp'))S.v='home';
- nav();
- try{$('app').innerHTML=await V[S.v]()}catch(e){$('app').innerHTML='<p class="err">'+esc(msg(e))+'</p>'}
+ document.body.classList.remove('menu');
+ if(!U&&isG()&&S.v!=='privacy')S.v='gprofile';
+ else if(S.v==='gprofile'&&!isG())S.v='home';
+ if(U&&AUTHV.includes(S.v)){S.v=S.back&&!AUTHV.includes(S.back)?S.back:'home';S.back=null}
+ if(!U&&PRIV.includes(S.v))S.v='login';
+ if(!(U&&U.admin)&&ADM.includes(S.v))S.v='home';
+ nav();chrome();
+ $('app').dataset.v=S.v;
+ try{$('app').innerHTML=await V[S.v]()}catch(e){console.error(e);$('app').innerHTML='<div class="empty"><p>'+esc(msg(e))+'</p><button onclick="A.go(\'home\')">홈으로</button></div>'}
  scrollTo(0,0)}
-function nav(){const t=U&&(U.admin?'ADMIN':tierOf(U.points).n);
- $('nav').innerHTML=U?`<span class="mu">${esc(U.name)}님 <span class="tag t-${t}">${t}</span></span>`+(U.admin?`<button class="o" onclick="A.go('addp')">상품등록</button><button class="o" onclick="A.go('admin')">주문·회원관리</button>`:`<button class="o" onclick="A.go('cart')">장바구니(${cart.length})</button><button class="o" onclick="A.go('orders')">내 주문</button><button class="o" onclick="A.go('my')">내 등급</button>`)+`<button class="o" onclick="A.out()">로그아웃</button>`:`<button class="o" onclick="A.go('login')">로그인</button><button onclick="A.go('signup')">회원가입</button>`}
-const tabs=()=>`<div class="tabs"><button class="${S.v==='home'?'':'o'}" onclick="A.go('home')">전체 상품</button><button class="${S.v==='board'&&S.tab==='qna'?'':'o'}" onclick="S.tab='qna';A.go('board')">문의사항</button><button class="${S.v==='board'&&S.tab==='review'?'':'o'}" onclick="S.tab='review';A.go('board')">리뷰 (작성 시 +1,000P)</button></div>`;
+function nav(){
+ const t=U&&(U.admin?'ADMIN':tierOf(U.points).n),bag=`<button class="ib" onclick="A.go('cart')" aria-label="장바구니">${IC.bag}${cart.length?`<span class="cnt">${cart.length}</span>`:''}</button>`;
+ let u,m;
+ if(U&&U.admin){u=`<button class="tx d" onclick="A.go('site')">사이트 관리</button><button class="tx d" onclick="A.go('addp')">상품 등록</button><button class="tx d" onclick="A.go('admin')">주문·회원</button><button class="tx" onclick="A.out()">로그아웃</button>`;
+  m=`<button onclick="A.go('site')">사이트 관리</button><button onclick="A.go('addp')">상품 등록</button><button onclick="A.go('admin')">주문·회원 관리</button>`}
+ else if(U){u=`<button class="tx d" onclick="A.go('my')">${esc(U.name)}님 <span class="tag t-${t}">${t}</span></button><button class="tx d" onclick="A.go('orders')">주문조회</button><button class="tx d" onclick="A.out()">로그아웃</button>${bag}`;
+  m=`<button onclick="A.go('my')">내 등급 · ${t}</button><button onclick="A.go('orders')">주문조회</button><button onclick="A.go('cart')">장바구니</button><button onclick="A.out()">로그아웃</button>`}
+ else if(au.currentUser){u=`<button class="tx" onclick="A.out()">로그아웃</button>`;m=''}
+ else{u=`<button class="tx" onclick="A.go('login')">로그인</button><button class="tx d" onclick="A.go('signup')">회원가입</button>${bag}`;
+  m=`<button onclick="A.go('login')">로그인</button><button onclick="A.go('signup')">회원가입</button><button onclick="A.go('orders')">주문조회</button>`}
+ $('nav').innerHTML=u;
+ $('gnb').innerHTML=`<button class="ib cls" onclick="A.menu(false)" aria-label="메뉴 닫기">${IC.x}</button><button onclick="A.sec('shop')">SHOP</button><button onclick="A.sec('about')">ABOUT</button><button onclick="A.board('review')">REVIEW</button><button onclick="A.board('qna')">Q&amp;A</button>${m?`<div class="mg">${m}</div>`:''}`}
+const tabs=()=>`<div class="tabs"><button class="${S.tab==='review'?'on':''}" onclick="A.board('review')">리뷰</button><button class="${S.tab==='qna'?'on':''}" onclick="A.board('qna')">문의사항</button></div>`;
+const agree=id=>`<label class="ck"><input id="${id}" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의합니다. <a href="#" onclick="A.go('privacy');return false">내용 보기</a></span></label>`;
 
-V.login=()=>`<div class="box"><h2>로그인</h2><label>아이디</label><input id="li" autocapitalize="off"><label>비밀번호</label><input id="lp" type="password" onkeydown="if(event.key==='Enter')A.login()"><div class="err" id="e"></div><button style="width:100%" onclick="A.login()">로그인</button><button class="o" style="width:100%;margin-top:10px" onclick="A.google()">Google로 계속하기</button><p class="mu" style="text-align:center"><a href="#" onclick="A.go('signup');return false" style="color:var(--gold)">회원가입</a></p></div>`;
-V.signup=()=>`<div class="box"><h2>회원가입</h2><label>이름</label><input id="sn"><label>생년월일</label><input id="sb" type="date"><label>아이디 (영문·숫자 4자 이상)</label><input id="si" autocapitalize="off"><label>비밀번호 (6자 이상)</label><input id="sp" type="password"><label>비밀번호 확인</label><input id="sp2" type="password"><label class="ck"><input id="sc" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의합니다. <a href="#" onclick="A.go('privacy');return false" style="color:var(--gold)">내용 보기</a></span></label><div class="err" id="e"></div><button style="width:100%" onclick="A.signup()">가입하기 (BRONZE 시작)</button><p style="text-align:center"><a href="#" onclick="A.go('login');return false" class="mu">로그인으로</a></p></div>`;
+/* ---------- 로그인 / 회원가입 ---------- */
+V.login=()=>`<div class="auth"><span class="lb">MEMBER LOGIN</span><h1>로그인</h1><p class="sub">로그인하고 등급별 할인과 적립 혜택을 받아 보세요.</p><label for="li">아이디</label><input id="li" autocapitalize="off" autocomplete="username"><label for="lp">비밀번호</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')A.login()"><div class="err" id="e"></div><button class="full" onclick="A.login()">로그인</button><div class="or">또는</div><button class="o full" onclick="A.google()">${IC.g}Google로 계속하기</button><div class="alt"><span>아직 회원이 아니신가요?</span><a href="#" onclick="A.go('signup');return false">회원가입</a></div><div class="alt s"><a href="#" onclick="A.go('home');return false">로그인 없이 계속 둘러보기</a></div></div>`;
+V.signup=()=>`<div class="auth"><span class="lb">JOIN US</span><h1>회원가입</h1><p class="sub">가입하면 BRONZE 등급으로 시작해요.</p><label for="sn">이름</label><input id="sn" autocomplete="name"><label for="sb">생년월일</label><input id="sb" type="date"><label for="si">아이디 (영문·숫자 4~20자)</label><input id="si" autocapitalize="off" autocomplete="username"><label for="sp">비밀번호 (6자 이상)</label><input id="sp" type="password" autocomplete="new-password"><label for="sp2">비밀번호 확인</label><input id="sp2" type="password" autocomplete="new-password">${agree('sc')}<div class="err" id="e"></div><button class="full" onclick="A.signup()">가입하기</button><div class="or">또는</div><button class="o full" onclick="A.google()">${IC.g}Google로 가입하기</button><div class="alt"><span>이미 회원이신가요?</span><a href="#" onclick="A.go('login');return false">로그인</a></div></div>`;
+V.gprofile=()=>{const g=au.currentUser;return `<div class="auth"><span class="lb">ALMOST DONE</span><h1>추가 정보 입력</h1><p class="sub">Google 계정으로 처음 오셨어요.<br>이름과 생년월일을 입력하면 가입이 완료돼요.</p><label for="gn">이름</label><input id="gn" value="${esc(g.displayName||'')}"><label for="gb">생년월일</label><input id="gb" type="date">${agree('gc')}<div class="err" id="e"></div><button class="full" onclick="A.gsave()">가입 완료</button><div class="alt s"><a href="#" onclick="A.out();return false">취소</a></div></div>`};
 
-V.gprofile=()=>{const g=au.currentUser;return `<div class="box"><h2>추가 정보 입력</h2><p class="mu">Google 계정으로 처음 오셨어요. 이름과 생년월일을 입력하면 가입이 완료돼요.</p><label>이름</label><input id="gn" value="${esc(g.displayName||'')}"><label>생년월일</label><input id="gb" type="date"><label class="ck"><input id="gc" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의합니다. <a href="#" onclick="A.go('privacy');return false" style="color:var(--gold)">내용 보기</a></span></label><div class="err" id="e"></div><button style="width:100%" onclick="A.gsave()">가입 완료</button><p style="text-align:center"><a href="#" onclick="A.out();return false" class="mu">취소</a></p></div>`};
-const hanger='<svg class="hk" viewBox="0 0 100 46" width="84" aria-hidden="true"><path d="M50 4c-5 0-8 3-8 7 0 3 3 5 6 6" fill="none" stroke="#98a0ac" stroke-width="2.4" stroke-linecap="round"/><path d="M50 17 4 42h92z" fill="none" stroke="#98a0ac" stroke-width="2.4" stroke-linejoin="round"/></svg>';
-const ward=()=>{const l=P.slice(0,14),it=l.length?l.map((p,i)=>`<div class="hg" style="--i:${i}" onclick="A.enter('${p.id}',this)"><div class="hgr"><div class="hgi">${hanger}<div class="gm">${img(p)}</div><div class="gl">${esc(p.name)}</div></div></div></div>`).join(''):Array.from({length:5},(_,i)=>`<div class="hg" style="--i:${i}"><div class="hgr"><div class="hgi">${hanger}<div class="gm">${img({})}</div><div class="gl">COMING SOON</div></div></div></div>`).join('');
- return `<section class="ward glass"><div class="eyebrow">WARDROBE</div><h3>옷장</h3><p class="mu" style="margin:0 0 4px">마음에 드는 옷을 눌러 보세요. 옷이 돌아서면 안으로 들어가요.</p><div class="wscroll"><div class="wi">${it}</div></div></section>`};
-const ring=()=>{const b=P.length?P.slice(0,10):[{}],n=Math.max(6,b.length),it=Array.from({length:n},(_,i)=>b[i%b.length]);
- return `<div class="ring3d"><div class="ring" style="--n:${n};--tn:${Math.tan(Math.PI/n).toFixed(4)}">${it.map((p,i)=>`<div class="ri" style="--i:${i}"${p.id?` onclick="A.go('detail','${p.id}')"`:''}>${img(p)}</div>`).join('')}</div></div>`};
-const cards=l=>l.length?l.map(p=>`<div class="card"><div class="imw" onclick="A.go('detail','${p.id}')">${img(p)}</div><button class="hrt" onclick="A.w('${p.id}')">${W.includes(p.id)?'♥':'♡'}</button><b style="cursor:pointer" onclick="A.go('detail','${p.id}')">${esc(p.name)}</b>${p.vip?'<span class="tag">VIP 신상</span><br>':''}<span class="mu">${won(p.price)}</span></div>`).join(''):'<p class="mu">검색 결과가 없습니다.</p>';
-V.home=async()=>{P=(await L('products')).sort(byAt);const g='VALIENS · NEW SEASON · BRONZE TO VIP · '.repeat(4);
- return `<div class="notice">NOTICE · 신규 가입 시 BRONZE 등급으로 시작해요. 리뷰 작성 시 +1,000P</div><section class="hero"><div class="eyebrow">2026 NEW SEASON</div><h1 class="wm">VALIENS</h1><p>유행보다 오래 입는 옷.<br>좋은 소재와 군더더기 없는 실루엣으로, 매일 입고 싶은 기본을 만듭니다.</p><button onclick="document.getElementById('g').scrollIntoView({behavior:'smooth'})">컬렉션 보기</button><div class="hl"><span>BRONZE</span><span>SILVER 5%</span><span>GOLD 10%</span><span>DIAMOND 15%</span><span>VIP 신상 무료</span></div></section>${ward()}${tabs()}<div class="bar2"><input id="q" placeholder="옷 이름 검색" value="${esc(Q)}" oninput="A.search(this.value)"><select onchange="A.sort(this.value)"><option value="new" ${SORT==='new'?'selected':''}>최신순</option><option value="lo" ${SORT==='lo'?'selected':''}>낮은 가격순</option><option value="hi" ${SORT==='hi'?'selected':''}>높은 가격순</option></select><button class="o" onclick="A.onlyw()">${ONLYW?'전체 보기':'♥ 찜한 상품'}</button></div><div class="grid" id="g">${list()}</div>`};
-V.detail=async()=>{P=await L('products');const p=P.find(x=>x.id===S.pid);if(!p)return'<p class="mu">상품을 찾을 수 없습니다.</p>';
- const rv=(await L('posts',where('t','==','review'))).filter(x=>x.pid===p.id).sort(byAt),t=tierOf(U.points),dp=Math.round(p.price*(100-t.d)/100),cols=p.colors?.length?p.colors:DCOL,szs=p.sizes?.length?p.sizes:DSZ;
- const opt=(U.admin||lock(p))?'':`<label>색상 · <span id="cn">선택</span></label><div class="sws">${cols.map(c=>`<span class="sw" data-n="${esc(c)}" style="background:${CMAP[c]||'#777'}" onclick="A.pc('${esc(c)}')"></span>`).join('')}</div><label>사이즈</label><div class="szs">${szs.map(z=>`<button type="button" class="sz" data-n="${esc(z)}" onclick="A.ps('${esc(z)}')">${esc(z)}</button>`).join('')}</div>`;
- return `<button class="o" onclick="A.go('home')">← 목록</button><div class="two" style="margin-top:16px">${img(p)}<div><h2 style="margin-top:0">${esc(p.name)}</h2><h3>${won(p.price)}</h3><p style="white-space:pre-wrap">${esc(p.desc)}</p>${U.admin?'':p.vip?'<p class="mu">VIP 전용 신상 · VIP 등급은 무료</p>':`<p class="mu">${t.n} 등급 할인가 ${won(dp)} (${t.d}%)</p>`}${opt}${lock(p)?'<p class="mu">🔒 VIP 등급 전용 신상입니다.</p>':U.admin?'':`<button onclick="A.buy()">${p.vip?'무료로 받기':'구매하기'}</button> <button class="o" onclick="A.add()">장바구니</button>`} ${U.admin?`<button class="o" onclick="A.delProd('${p.id}')">상품 삭제</button>`:''}<h4 style="margin-top:28px">리뷰 (${rv.length}) ${rv.length?'★ '+(rv.reduce((a,x)=>a+x.star,0)/rv.length).toFixed(1):''}</h4>${rv.map(post).join('')||'<p class="mu">아직 리뷰가 없습니다.</p>'}</div></div>`};
+/* ---------- 홈 ---------- */
+const hanger='<svg class="hk" viewBox="0 0 100 46" width="84" aria-hidden="true"><path d="M50 4c-5 0-8 3-8 7 0 3 3 5 6 6" fill="none" stroke="#6b6b6b" stroke-width="2.4" stroke-linecap="round"/><path d="M50 17 4 42h92z" fill="none" stroke="#6b6b6b" stroke-width="2.4" stroke-linejoin="round"/></svg>';
+const ward=()=>{const it=P.slice(0,14).map((p,i)=>`<div class="hg" style="--i:${i}" onclick="A.enter('${p.id}',this)"><div class="hgr"><div class="hgi">${hanger}<div class="gm">${img(p)}</div><div class="gl">${esc(p.name)}</div></div></div></div>`).join('');
+ return `<section class="sec ward"><div class="wrap"><div class="sh"><div><span class="lb">WARDROBE</span><h2>옷장에서 고르기</h2></div><p class="mu">옷을 눌러 보세요. 옷이 돌아서면 상세 페이지로 들어가요.</p></div></div><div class="wscroll"><div class="wi">${it}</div></div></section>`};
+const cards=l=>l.length?l.map(p=>`<div class="card"><div class="imw" onclick="A.go('detail','${p.id}')">${img(p)}${p.vip?'<span class="badge">VIP ONLY</span>':''}</div><button class="hrt${W.includes(p.id)?' on':''}" data-w="${p.id}" onclick="A.w('${p.id}')" aria-label="찜하기">${IC.heart}</button><div class="ci"><b onclick="A.go('detail','${p.id}')">${esc(p.name)}</b><span class="pr">${won(p.price)}</span></div></div>`).join(''):`<p class="mu">${LERR&&!P.length?'상품을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.':ONLYW?'찜한 상품이 없어요.':Q?'검색 결과가 없어요.':'새 상품을 준비하고 있어요.'}</p>`;
+V.home=async()=>{LERR=false;P=(await safe(L('products'))).sort(byAt);
+ const ad=U&&U.admin,me=U&&!U.admin?tierOf(U.points).n:'',edit=ad?`<button class="edit" onclick="A.go('site')">편집</button>`:'';
+ return `<section class="hero${SITE.heroImg?'':' noimg'}">${SITE.heroImg?`<img src="${esc(SITE.heroImg)}" alt="">`:`<img class="mark" src="logo-white.png" alt="">`}${edit}<div class="wrap"><h1>${esc(SITE.heroTitle)}</h1>${SITE.heroSub?`<p>${esc(SITE.heroSub)}</p>`:''}<div class="acts"><button onclick="A.sec('shop')">SHOP NOW</button><button class="o" onclick="A.sec('about')">BRAND STORY</button></div></div></section>
+<section class="sec" id="shop"><div class="wrap"><div class="sh"><div><span class="lb">NEW ARRIVALS</span><h2>전체 상품<span class="cnt2">${P.length}</span></h2></div><div class="tools"><input id="q" placeholder="상품 검색" value="${esc(Q)}" oninput="A.search(this.value)" aria-label="상품 검색"><select onchange="A.sort(this.value)" aria-label="정렬"><option value="new" ${SORT==='new'?'selected':''}>신상품순</option><option value="lo" ${SORT==='lo'?'selected':''}>낮은 가격순</option><option value="hi" ${SORT==='hi'?'selected':''}>높은 가격순</option></select><button class="o${ONLYW?' on':''}" onclick="A.onlyw(this)">${IC.heart}찜한 상품</button></div></div><div class="grid" id="g">${list()}</div></div></section>
+<section class="sec about" id="about"><div class="wrap ab"><div class="ab-img${SITE.brandImg?'':' ph'}">${SITE.brandImg?`<img src="${esc(SITE.brandImg)}" alt="">`:'<img src="logo-black.png" alt="">'}${edit}</div><div><span class="lb">BRAND STORY</span><h2>${esc(SITE.brandTitle)}</h2><div class="body">${esc(SITE.brandBody)}</div></div></div></section>
+${P.length?ward():''}
+<section class="sec member" id="member"><div class="wrap"><div class="sh"><div><span class="lb">MEMBERSHIP</span><h2>멤버십 혜택</h2></div>${U?'':`<button class="o" onclick="A.go('signup')">회원가입하기</button>`}</div><div class="tiers">${TIERS.map(t=>`<div class="${t.n===me?'me':''}"><b>${t.n}</b><strong>${t.d?t.d+'% 할인':'기본 등급'}</strong><span>${t.min?t.min.toLocaleString()+'P 이상':'가입 즉시'}${t.n==='VIP'?' · 신상 무료':''}</span></div>`).join('')}</div><p class="mnote">구매 금액 1원당 1P가 입금 확인 후 적립되고, 상품별 첫 리뷰 작성 시 1,000P가 추가로 적립돼요. 포인트는 등급 산정에만 쓰여요.</p></div></section>`};
+
+/* ---------- 상품 상세 ---------- */
+V.detail=async()=>{P=await L('products');const p=P.find(x=>x.id===S.pid);if(!p)return`<div class="empty"><p>상품을 찾을 수 없어요.</p><button onclick="A.go('home')">쇼핑 계속하기</button></div>`;
+ const rv=(await safe(L('posts',where('t','==','review')))).filter(x=>x.pid===p.id).sort(byAt),cols=p.colors?.length?p.colors:DCOL,szs=p.sizes?.length?p.sizes:DSZ,ad=U&&U.admin,lk=lock(p);
+ let note='';
+ if(p.vip)note=lk?'VIP 등급 회원 전용 상품입니다.':'VIP 전용 신상 · VIP 회원은 무료로 받을 수 있어요.';
+ else if(!U)note=`<a href="#" onclick="A.go('login');return false">로그인</a>하면 등급별 할인가가 적용돼요.`;
+ else if(!ad){const t=tierOf(U.points);note=t.d?`<b>${t.n}</b> 회원가 <b>${won(Math.round(p.price*(100-t.d)/100))}</b> (${t.d}% 할인)`:'SILVER 등급부터 5% 할인이 적용돼요.'}
+ const opt=(ad||lk)?'':`<div class="opt-l">색상<span id="cn">선택해 주세요</span></div><div class="sws">${cols.map(c=>`<span class="sw" role="button" tabindex="0" title="${esc(c)}" aria-label="${esc(c)}" data-n="${esc(c)}" style="background:${CMAP[c]||'#777'}" onclick="A.pc('${esc(c)}')" onkeydown="if(event.key==='Enter')A.pc('${esc(c)}')"></span>`).join('')}</div><div class="opt-l">사이즈</div><div class="szs">${szs.map(z=>`<button type="button" class="sz" data-n="${esc(z)}" onclick="A.ps('${esc(z)}')">${esc(z)}</button>`).join('')}</div>`;
+ const acts=ad?`<button class="o full" onclick="A.delProd('${p.id}')">상품 삭제</button>`:lk?`<div class="lockmsg">VIP 등급 회원만 받을 수 있는 상품이에요.</div>`:`<div class="buy"><button onclick="A.buy()">${p.vip?'무료로 받기':'구매하기'}</button><button class="o" onclick="A.add()">장바구니</button><button class="o wish${W.includes(p.id)?' on':''}" data-w="${p.id}" onclick="A.w('${p.id}')" aria-label="찜하기">${IC.heart}</button></div>`;
+ const avg=rv.length?(rv.reduce((a,x)=>a+(x.star||0),0)/rv.length).toFixed(1):'';
+ return `<div class="pd"><div class="pd-img">${img(p)}</div><div class="pd-info"><div class="crumb"><a href="#" onclick="A.sec('shop');return false">SHOP</a> / ${esc(p.name)}</div><h1>${esc(p.name)}</h1><div class="pd-price">${won(p.price)}</div>${note?`<p class="pd-note">${note}</p>`:''}${p.desc?`<div class="pd-desc">${esc(p.desc)}</div>`:'<div class="pd-gap"></div>'}${opt}${acts}<details class="first" open><summary>배송 · 교환 · 반품 안내</summary><div>${esc(SITE.ship)}</div></details><details><summary>입금 안내</summary><div>무통장 입금으로 결제해요. 주문 후 아래 계좌로 입금해 주시면 확인 후 출고됩니다.\n${SITE.bank?esc(SITE.bank)+' ':''}${esc(SITE.acct)} (예금주 ${esc(SITE.holder)})</div></details><details><summary>멤버십 혜택</summary><div>${TIERS.map(t=>`${t.n} · ${t.perk}`).join('\n')}</div></details></div></div>
+<section class="rvs"><div class="sh"><h2>리뷰<span class="cnt2">${rv.length}</span>${avg?`<span class="cnt2">★ ${avg}</span>`:''}</h2><button class="o" onclick="A.board('review')">리뷰 쓰기</button></div>${rv.map(post).join('')||'<p class="mu">아직 작성된 리뷰가 없어요.</p>'}</section>`};
+
+/* ---------- 게시판 ---------- */
+const post=x=>`<div class="post">${x.star?`<div class="st">${stars(x.star)}</div>`:''}<b>${esc(x.title)}</b>${x.pn?`<span class="pn">${esc(x.pn)}</span>`:''}<p>${esc(x.body)}</p>${x.img?`<img class="rimg" src="${esc(x.img)}" alt="" onclick="this.classList.toggle('big')">`:''}<div class="meta">${esc(mask(x.name))} · ${(x.at||'').slice(0,10)}${U&&(U.admin||x.uid===U.uid)?`<a href="#" class="del" onclick="A.delPost('${x.id}');return false">삭제</a>`:''}</div></div>`;
+V.board=async()=>{const rv=S.tab==='review',l=(await safe(L('posts',where('t','==',S.tab)))).sort(byAt);if(rv&&U)P=await safe(L('products'));
+ const h=`<h3>${rv?'리뷰 작성':'문의하기'}</h3>`;
+ const form=!U?`${h}<p class="mu">로그인 후 작성할 수 있어요.</p><button class="full" onclick="A.go('login')">로그인</button>`
+  :rv&&!P.length?`${h}<p class="mu">리뷰를 남길 상품이 아직 없어요.</p>`
+  :`${h}<p class="mu">${rv?'상품마다 첫 리뷰에 1,000P가 적립돼요.':'남겨 주신 문의는 확인 후 답변드릴게요.'}</p>${rv?`<label for="bp">상품</label><select id="bp">${P.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select><label for="bs">별점</label><select id="bs">${[5,4,3,2,1].map(n=>`<option value="${n}">${stars(n)}</option>`).join('')}</select>`:''}<label for="bt">제목</label><input id="bt" maxlength="80"><label for="bb">내용</label><textarea id="bb" rows="5" maxlength="2000"></textarea>${rv?'<label for="bf">사진 (선택)</label><input id="bf" type="file" accept="image/*">':''}<div class="err" id="e"></div><button class="full" onclick="A.post()">등록하기</button>`;
+ return `<h1 class="pt">${rv?'리뷰':'문의사항'}<span>${l.length}</span></h1>${tabs()}<div class="board"><div class="feed">${l.map(post).join('')||'<p class="mu" style="padding:24px 0">등록된 글이 없어요.</p>'}</div><aside class="panel">${form}</aside></div>`};
+
+/* ---------- 장바구니 / 주문 ---------- */
+const line=(x,rm=true)=>`<div class="line"><div class="th" onclick="A.go('detail','${x.p.id}')">${img(x.p)}</div><div class="li"><b>${esc(x.p.name)}</b>${optTxt(x.k)?`<span>${esc(optTxt(x.k).slice(0,-3))}</span>`:''}<span class="pr">${x.p.vip?'VIP 무료':won(x.p.price)}</span></div>${rm?`<button class="x" onclick="A.rm(${x.i})">삭제</button>`:'<span></span>'}</div>`;
+const totals=l=>{const t=tierOf(U.points),sum=l.filter(x=>!x.p.vip).reduce((a,x)=>a+x.p.price,0),paid=Math.round(sum*(100-t.d)/100);return{t,sum,paid}};
+V.cart=async()=>{P=await L('products');const l=cart.map((k,i)=>({p:P.find(x=>x.id===k.split('|')[0]),i,k})).filter(x=>x.p);
+ if(!l.length)return `<h1 class="pt">장바구니</h1><div class="empty"><p>장바구니가 비어 있어요.</p><button onclick="A.sec('shop')">쇼핑 계속하기</button></div>`;
+ const{t,sum,paid}=totals(l);
+ return `<h1 class="pt">장바구니<span>${l.length}</span></h1><div class="co"><div class="lines">${l.map(x=>line(x)).join('')}</div><aside class="sum"><h3>주문 예상 금액</h3><div class="row"><span>상품 금액</span><span>${won(sum)}</span></div><div class="row"><span>${t.n} 등급 할인 (${t.d}%)</span><span>-${won(sum-paid)}</span></div><div class="row t"><span>결제 예정 금액</span><span>${won(paid)}</span></div><button onclick="A.checkout()">주문하기</button><button class="o" onclick="A.sec('shop')">쇼핑 계속하기</button></aside></div>`};
+V.checkout=async()=>{P=await L('products');const l=S.co.map(k=>({p:P.find(x=>x.id===k.split('|')[0]),k})).filter(x=>x.p);if(!l.length)return `<h1 class="pt">주문/결제</h1><div class="empty"><p>주문할 상품이 없어요.</p><button onclick="A.sec('shop')">쇼핑 계속하기</button></div>`;
+ const{t,sum,paid}=totals(l);
+ return `<h1 class="pt">주문/결제</h1><div class="co"><div><h3 class="h3">주문 상품</h3><div class="lines">${l.map(x=>line(x,false)).join('')}</div><h3 class="h3" style="margin-top:48px">배송 정보</h3><label for="ck">입금자명</label><input id="ck" value="${esc(U.name)}"><label for="cz">우편번호 (5자리)</label><input id="cz" inputmode="numeric" maxlength="5" style="max-width:200px"><label for="ca">주소</label><input id="ca" autocomplete="street-address"><label for="cd">상세주소</label><input id="cd"></div><aside class="sum"><h3>결제 금액</h3><div class="row"><span>상품 금액</span><span>${won(sum)}</span></div><div class="row"><span>${t.n} 등급 할인 (${t.d}%)</span><span>-${won(sum-paid)}</span></div><div class="row t"><span>최종 결제 금액</span><span>${won(paid)}</span></div>${paid?`<div class="bank"><b>무통장 입금 안내</b><br>${bankHTML()}<br><span class="mu" style="font-size:12px">주문 후 입금해 주시면 확인 후 출고됩니다.</span></div>`:''}<div class="err" id="e" style="margin:16px 0 0"></div><button onclick="A.order()">${paid?won(paid)+' 주문하기':'주문하기'}</button></aside></div>`};
 const STEPS=['입금대기','입금확인','배송중','배송완료'],CARR={'kr.cjlogistics':'CJ대한통운','kr.hanjin':'한진택배','kr.lotte':'롯데택배','kr.epost':'우체국택배','kr.logen':'로젠택배'};
 const stepper=s=>{const i=s==='무료제공'?1:STEPS.indexOf(s);return `<div class="stp">${STEPS.map((x,j)=>`<span class="${j<=i?'on':''}">${x}</span>`).join('')}</div>`};
 const stCell=x=>{if(x.st==='입금대기')return `<button onclick="A.confirm('${x.id}')">입금 확인</button>`;
- if(x.st==='입금확인'||x.st==='무료제공')return `<select id="sc_${x.id}" style="margin:0 0 6px">${Object.keys(CARR).map(k=>`<option value="${k}">${CARR[k]}</option>`).join('')}</select><input id="sn_${x.id}" placeholder="송장번호" inputmode="numeric" style="margin:0 0 6px"><button onclick="A.ship('${x.id}')">배송 시작</button>`;
+ if(x.st==='입금확인'||x.st==='무료제공')return `<select id="sc_${x.id}">${Object.keys(CARR).map(k=>`<option value="${k}">${CARR[k]}</option>`).join('')}</select><input id="sn_${x.id}" placeholder="송장번호" inputmode="numeric"><button onclick="A.ship('${x.id}')">배송 시작</button>`;
  if(x.st==='배송중')return `${x.st}<br><span class="mu">${esc(CARR[x.ship?.c]||'')} ${esc(x.ship?.n||'')}</span><br><button onclick="A.done('${x.id}')">배송 완료</button>`;
  return x.st};
-const post=x=>`<div class="post">${x.star?`<div>${stars(x.star)}</div>`:''}<b>${esc(x.title)}</b>${x.pn?` <span class="mu">· ${esc(x.pn)}</span>`:''}<div style="white-space:pre-wrap">${esc(x.body)}</div>${x.img?`<img class="rimg" src="${esc(x.img)}" alt="" onclick="this.classList.toggle('big')">`:''}<div class="mu">${esc(x.name)} · ${(x.at||'').slice(0,10)} ${(U.admin||x.uid===U.uid)?`<a href="#" style="color:var(--err)" onclick="A.delPost('${x.id}');return false">삭제</a>`:''}</div></div>`;
-V.board=async()=>{const l=(await L('posts',where('t','==',S.tab))).sort(byAt),rv=S.tab==='review';if(rv)P=await L('products');
- return `${tabs()}<h3>${rv?'리뷰':'문의사항'}</h3>${rv?`<label>상품</label><select id="bp">${P.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select><label>별점</label><select id="bs">${[5,4,3,2,1].map(n=>`<option value="${n}">${stars(n)}</option>`).join('')}</select>`:''}<label>제목</label><input id="bt"><label>내용</label><textarea id="bb" rows="3"></textarea>${rv?'<label>사진 (선택)</label><input id="bf" type="file" accept="image/*">':''}<div class="err" id="e"></div><button onclick="A.post()">등록</button><div style="margin-top:22px">${l.map(post).join('')||'<p class="mu">등록된 글이 없습니다.</p>'}</div>`};
-V.cart=async()=>{P=await L('products');const l=cart.map((k,i)=>({p:P.find(x=>x.id===k.split('|')[0]),i,k})).filter(x=>x.p);
- return `<h2>장바구니</h2>${l.length?l.map(x=>`<div class="post" style="display:flex;justify-content:space-between;gap:8px"><span>${esc(x.p.name)}<br><span class="mu">${esc(optTxt(x.k))}${won(x.p.price)}</span></span><button class="o" onclick="A.rm(${x.i})">삭제</button></div>`).join('')+`<h3>합계 ${won(l.reduce((a,x)=>a+x.p.price,0))}</h3><button onclick="A.checkout()">주문하기</button>`:'<p class="mu">장바구니가 비어 있습니다.</p>'}`};
-V.checkout=async()=>{P=await L('products');const l=S.co.map(k=>({p:P.find(x=>x.id===k.split('|')[0]),k})).filter(x=>x.p);if(!l.length)return'<p class="mu">주문할 상품이 없습니다.</p>';
- const t=tierOf(U.points),sum=l.filter(x=>!x.p.vip).reduce((a,x)=>a+x.p.price,0),paid=Math.round(sum*(100-t.d)/100);
- return `<h2>주문하기</h2>${l.map(x=>`<div class="post">${esc(x.p.name)} · ${esc(optTxt(x.k))}${x.p.vip?'무료 (VIP 신상)':won(x.p.price)}</div>`).join('')}<p>상품 합계 ${won(sum)}<br>${t.n} 등급 할인 ${t.d}% 적용</p><h3>결제 금액 ${won(paid)}</h3><div class="tier" ${paid?'':'hidden'}><b>무통장 입금 안내</b><br>입금 계좌: 1002-0000-0000<br>예금주: 임건우<br><span class="mu">주문 후 입금해 주시면 확인 후 처리됩니다.</span></div><label>입금자명</label><input id="ck" value="${esc(U.name)}"><label>우편번호 (5자리)</label><input id="cz" inputmode="numeric"><label>주소</label><input id="ca"><label>상세주소</label><input id="cd"><div class="err" id="e"></div><button onclick="A.order()">주문 완료</button>`};
-V.orders=async()=>{const l=(await L('orders',where('uid','==',U.uid))).sort(byAt);return `<h2>내 주문</h2>${l.map(o=>`<div class="post"><b>${o.id}</b> · ${o.st}${stepper(o.st)}<div>${o.items.map(esc).join(', ')}</div>${o.ship?`<div>🚚 ${esc(CARR[o.ship.c]||o.ship.c)} ${esc(o.ship.n)} <a href="https://tracker.delivery/#/${encodeURIComponent(o.ship.c)}/${encodeURIComponent(o.ship.n)}" target="_blank" rel="noopener" style="color:var(--gold)">배송 조회</a></div>`:''}<div class="mu">결제금액 ${won(o.paid)} (등급할인 ${o.disc}%) · ${o.at.slice(0,10)}</div></div>`).join('')||'<p class="mu">주문 내역이 없습니다.</p>'}`};
-V.my=async()=>{await loadU(au.currentUser);const t=tierOf(U.points),nx=TIERS[TIERS.indexOf(t)+1],pr=nx?Math.min(100,(U.points-t.min)/(nx.min-t.min)*100):100;
- return `<h2>내 등급</h2><div class="tier"><h3 style="margin:0">${t.n}</h3><div class="mu">보유 포인트 ${U.points.toLocaleString()}P · ${t.perk}</div><div class="bar"><i style="width:${pr}%"></i></div><div class="mu">${nx?`${nx.n}까지 ${(nx.min-U.points).toLocaleString()}P 남았어요`:'최고 등급입니다'}</div></div><p class="mu">포인트는 승급에만 쓰이며 가격에서 차감되지 않습니다. 옷 가격 1원당 1P(입금 확인 후), 리뷰 작성 시 1,000P가 적립됩니다.</p><div class="tw"><table><tr><th>등급</th><th>필요 포인트</th><th>혜택</th></tr>${TIERS.map(x=>`<tr><td>${x.n}${x===t?' ✓':''}</td><td>${x.min.toLocaleString()}P</td><td>${x.perk}</td></tr>`).join('')}</table></div><p style="margin-top:28px"><button class="o" onclick="A.leave()">회원 탈퇴</button></p>`};
-V.privacy=()=>`<div class="pol"><button class="o" onclick="A.go(U?'home':'signup')">← 돌아가기</button><h2 style="margin-top:18px">개인정보 처리방침</h2><p>${OP}(이하 '운영자')는 VALIENS 서비스 제공을 위해 아래와 같이 개인정보를 처리합니다.</p>
+V.orders=async()=>{const l=(await L('orders',where('uid','==',U.uid))).sort(byAt);
+ return `<h1 class="pt">주문조회</h1>${l.map(o=>`<div class="ord"><div class="ord-h"><span><b>${esc(o.id)}</b>${(o.at||'').slice(0,10)}</span><span class="stt">${esc(o.st)}</span></div>${stepper(o.st)}<div class="oi">${o.items.map(esc).join('<br>')}</div><div class="ord-f"><span>결제 금액 <b>${won(o.paid)}</b>${o.disc?` (등급 할인 ${o.disc}%)`:''}</span>${o.ship?`<span>${esc(CARR[o.ship.c]||o.ship.c)} ${esc(o.ship.n)} · <a href="https://tracker.delivery/#/${encodeURIComponent(o.ship.c)}/${encodeURIComponent(o.ship.n)}" target="_blank" rel="noopener">배송 조회</a></span>`:''}</div>${o.st==='입금대기'?`<div class="bank"><b>입금 대기 중</b> · ${won(o.paid)}<br>${bankHTML()}</div>`:''}</div>`).join('')||`<div class="empty"><p>주문 내역이 없어요.</p><button onclick="A.sec('shop')">쇼핑하러 가기</button></div>`}`};
+V.my=async()=>{await loadU(au.currentUser);const pts=U.points||0,t=tierOf(pts),nx=TIERS[TIERS.indexOf(t)+1],pr=nx?Math.min(100,(pts-t.min)/(nx.min-t.min)*100):100;
+ return `<h1 class="pt">내 등급</h1><div class="tier"><span class="lb">MY GRADE</span><h2>${t.n}</h2><p class="mu" style="margin:0">보유 포인트 ${pts.toLocaleString()}P · ${t.perk}</p><div class="bar"><i style="width:${pr}%"></i></div><p class="mu" style="margin:0">${nx?`${nx.n}까지 ${(nx.min-pts).toLocaleString()}P 남았어요`:'최고 등급이에요'}</p></div><p class="mu">포인트는 등급 산정에만 쓰이며 가격에서 차감되지 않아요. 구매 금액 1원당 1P(입금 확인 후), 상품별 첫 리뷰 작성 시 1,000P가 적립돼요.</p><div class="tw"><table><tr><th>등급</th><th>필요 포인트</th><th>혜택</th></tr>${TIERS.map(x=>`<tr><td>${x.n}${x===t?' <span class="tag">MY</span>':''}</td><td>${x.min.toLocaleString()}P</td><td>${x.perk}</td></tr>`).join('')}</table></div><p style="margin-top:56px"><button class="x" onclick="A.leave()">회원 탈퇴</button></p>`};
+
+/* ---------- 개인정보 처리방침 ---------- */
+V.privacy=()=>`<div class="pol"><button class="back" onclick="A.go('home')">← 홈으로</button><h1 class="pt">개인정보 처리방침</h1><p>${OP}(이하 '운영자')는 VALIENS 서비스 제공을 위해 아래와 같이 개인정보를 처리합니다.</p>
 <h4>1. 수집 항목</h4><ul><li>회원가입: 이름, 생년월일, 아이디, 비밀번호</li><li>주문·배송: 입금자명, 우편번호, 주소</li><li>이용 중 생성: 작성한 문의·리뷰, 주문 내역, 포인트·등급</li></ul>
 <h4>2. 이용 목적</h4><p>회원 식별과 로그인, 주문 접수·입금 확인·배송, 등급·포인트 관리, 문의 응대.</p>
 <h4>3. 보유 및 이용 기간</h4><p>회원 탈퇴 시까지 보관 후 지체 없이 파기합니다. 단, 전자상거래법에 따라 계약·청약철회 및 대금결제 기록은 5년, 소비자 불만·분쟁처리 기록은 3년간 보관합니다.</p>
@@ -196,9 +611,24 @@ V.privacy=()=>`<div class="pol"><button class="o" onclick="A.go(U?'home':'signup
 <h4>8. 안전성 확보 조치</h4><p>접근 권한 제한(본인과 관리자만 열람), 전송 구간 암호화, 비밀번호 암호화 저장.</p>
 <h4>9. 개인정보 보호 책임자</h4><p>${OP} · ${MAIL}</p>
 <h4>10. 변경 안내</h4><p>이 방침이 바뀌면 이 페이지에 공지합니다. 시행일: 2026년 11월 6일</p></div>`;
-V.addp=()=>{S.nc=[];S.ns=[];return `<h2>상품 등록</h2><label>상품명</label><input id="an"><label>가격(원)</label><input id="ap" type="number"><label>설명</label><textarea id="ad" rows="4"></textarea><label>색상 (여러 개 가능)</label><div class="sws">${Object.keys(CMAP).map(c=>`<span class="sw" title="${c}" style="background:${CMAP[c]}" onclick="A.tg('nc','${c}',this)"></span>`).join('')}</div><label>사이즈 (여러 개 가능)</label><div class="szs">${['XS','S','M','L','XL','XXL','FREE'].map(z=>`<button type="button" class="sz" onclick="A.tg('ns','${z}',this)">${z}</button>`).join('')}</div><label>사진</label><input id="af" type="file" accept="image/*"><label><input id="av" type="checkbox">VIP 전용 신상 (VIP 무료)</label><div class="err" id="e"></div><button onclick="A.addProd()">등록</button>`};
+
+/* ---------- 관리자 ---------- */
+V.addp=()=>{S.nc=[];S.ns=[];return `<h1 class="pt">상품 등록</h1><label for="an">상품명</label><input id="an" maxlength="60"><label for="ap">가격(원)</label><input id="ap" type="number" inputmode="numeric"><label for="ad">설명</label><textarea id="ad" rows="5"></textarea><div class="opt-l">색상 (여러 개 선택 가능)</div><div class="sws">${Object.keys(CMAP).map(c=>`<span class="sw" title="${c}" style="background:${CMAP[c]}" onclick="A.tg('nc','${c}',this)"></span>`).join('')}</div><div class="opt-l">사이즈 (여러 개 선택 가능)</div><div class="szs">${['XS','S','M','L','XL','XXL','FREE'].map(z=>`<button type="button" class="sz" onclick="A.tg('ns','${z}',this)">${z}</button>`).join('')}</div><label for="af">사진</label><input id="af" type="file" accept="image/*"><label><input id="av" type="checkbox">VIP 전용 신상 (VIP 회원 무료)</label><div class="err" id="e"></div><button onclick="A.addProd()">등록하기</button>`};
 V.admin=async()=>{const[o,u]=await Promise.all([L('orders'),L('users')]);o.sort(byAt);
- return `<h2>주문 (${o.filter(x=>x.st==='입금대기').length}건 입금 대기)</h2><div class="tw"><table><tr><th>주문번호</th><th>회원</th><th>입금자</th><th>상품</th><th>금액</th><th>주소</th><th>상태</th></tr>${o.map(x=>`<tr><td>${x.id}</td><td>${esc(x.name)}</td><td>${esc(x.payer)}</td><td>${x.items.map(esc).join(', ')}</td><td>${won(x.paid)}</td><td>${esc(x.zip)} ${esc(x.addr)}</td><td>${stCell(x)}</td></tr>`).join('')||'<tr><td colspan="7" class="mu">주문이 없습니다.</td></tr>'}</table></div><h2 style="margin-top:30px">회원 (${u.length}명)</h2><div class="tw"><table><tr><th>이름</th><th>생년월일</th><th>아이디</th><th>가입일</th><th>포인트</th><th>등급</th></tr>${u.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.birth)}</td><td>${esc(x.id)}</td><td>${(x.at||'').slice(0,10)}</td><td>${x.points.toLocaleString()}P</td><td>${tierOf(x.points).n}</td></tr>`).join('')}</table></div>`};
+ return `<div class="adm"><h1 class="pt">주문·회원 관리</h1><h2>주문 <span class="cnt2">입금 대기 ${o.filter(x=>x.st==='입금대기').length}건</span></h2><div class="tw"><table><tr><th>주문번호</th><th>회원</th><th>입금자</th><th>상품</th><th>금액</th><th>주소</th><th>상태</th></tr>${o.map(x=>`<tr><td>${esc(x.id)}<br><span class="mu" style="font-size:12px">${(x.at||'').slice(0,10)}</span></td><td>${esc(x.name)}</td><td>${esc(x.payer)}</td><td>${x.items.map(esc).join('<br>')}</td><td>${won(x.paid)}</td><td>${esc(x.zip)} ${esc(x.addr)}</td><td>${stCell(x)}</td></tr>`).join('')||'<tr><td colspan="7" class="mu">주문이 없습니다.</td></tr>'}</table></div><h2>회원 <span class="cnt2">${u.length}명</span></h2><div class="tw"><table><tr><th>이름</th><th>생년월일</th><th>아이디</th><th>가입일</th><th>포인트</th><th>등급</th></tr>${u.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.birth)}</td><td>${esc(x.id)}</td><td>${(x.at||'').slice(0,10)}</td><td>${(x.points||0).toLocaleString()}P</td><td>${tierOf(x.points).n}</td></tr>`).join('')}</table></div></div>`};
+V.site=()=>{
+ const f=(k,l,ph='')=>`<label for="s_${k}">${l}</label><input id="s_${k}" value="${esc(SITE[k])}" placeholder="${esc(ph)}">`,
+  ta=(k,l,r=4)=>`<label for="s_${k}">${l}</label><textarea id="s_${k}" rows="${r}">${esc(SITE[k])}</textarea>`,
+  im=(k,l,w)=>`<label for="f_${k}">${l}</label>${SITE[k]?`<img class="prev${w?' w':''}" src="${esc(SITE[k])}" alt=""><label><input type="checkbox" id="x_${k}">사진 삭제</label>`:'<p class="mu" style="margin:6px 0 0">등록된 사진이 없어요. (없으면 로고가 대신 보여요)</p>'}<input id="f_${k}" type="file" accept="image/*">`;
+ return `<h1 class="pt">사이트 관리</h1><p class="mu">저장하면 바로 모든 방문자에게 보여요.</p>
+<div class="fs"><h3>상단 공지</h3><p class="mu">화면 맨 위 검은 띠에 보여요. 비워 두면 숨겨져요.</p>${f('notice','공지 문구')}</div>
+<div class="fs"><h3>메인 배너</h3><p class="mu">홈 첫 화면이에요. 줄을 바꾸면 화면에서도 줄이 바뀌어요.</p>${ta('heroTitle','큰 제목',2)}${ta('heroSub','설명 문구',3)}${im('heroImg','배너 사진 (가로로 긴 사진 권장)',1)}</div>
+<div class="fs"><h3>브랜드 소개</h3>${ta('brandTitle','제목',2)}${ta('brandBody','소개 글',9)}${im('brandImg','소개 사진 (세로 사진 권장)')}${f('tagline','하단 한 줄 소개')}</div>
+<div class="fs"><h3>배송 · 교환 · 반품 안내</h3><p class="mu">모든 상품 상세 페이지에 보여요. 실제 운영 기준에 맞게 꼭 확인해 주세요.</p>${ta('ship','안내 내용',7)}</div>
+<div class="fs"><h3>입금 계좌</h3><p class="mu">주문 화면, 주문조회, 하단에 보여요.</p><div class="g2"><div>${f('bank','은행','예: 국민은행')}</div><div>${f('holder','예금주')}</div></div>${f('acct','계좌번호')}</div>
+<div class="fs"><h3>고객센터</h3><div class="g2"><div>${f('tel','전화번호')}</div><div>${f('email','이메일')}</div></div>${f('hours','운영 시간','예: 평일 10:00 - 17:00 (점심 12:00 - 13:00)')}</div>
+<div class="fs"><h3>사업자 정보</h3><p class="mu">통신판매를 하려면 사이트 하단에 표시해야 하는 정보예요. 입력한 항목만 하단에 보여요.</p><div class="g2"><div>${f('biz','상호')}</div><div>${f('ceo','대표자')}</div><div>${f('bizNo','사업자등록번호')}</div><div>${f('mailNo','통신판매업 신고번호')}</div></div>${f('addr','사업장 주소')}</div>
+<div class="save"><div class="err" id="e"></div><button onclick="A.saveSite()">저장하기</button></div>`};
 
 const rd=(f,m=1100,q=.86)=>new Promise(ok=>{const i=new Image();i.onload=()=>{
  const draw=mx=>{const s=Math.min(1,mx/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(i.width*s));c.height=Math.max(1,Math.round(i.height*s));c.getContext('2d').drawImage(i,0,0,c.width,c.height);return c};
@@ -209,37 +639,43 @@ const rd=(f,m=1100,q=.86)=>new Promise(ok=>{const i=new Image();i.onload=()=>{
  let mx=Math.min(m,900),u;
  for(;;){c=draw(mx);u=c.toDataURL('image/webp',.88);if(!u.startsWith('data:image/webp'))u=c.toDataURL('image/png');if(u.length<900000||mx<300)break;mx=Math.round(mx*.8)}
  ok(u)};i.onerror=()=>ok('');i.src=URL.createObjectURL(f)});
-const need=()=>{if(!S.color||!S.size){alert('색상과 사이즈를 선택해 주세요.');return null}return S.pid+'|'+S.color+'|'+S.size};
-const run=async f=>{try{await f()}catch(e){const m=msg(e);if(!m)return;const x=$('e');x?x.textContent=m:alert(m)}};
+const need=()=>{if(!S.color||!S.size){toast('색상과 사이즈를 선택해 주세요.');return null}return S.pid+'|'+S.color+'|'+S.size};
+const run=async f=>{try{await f()}catch(e){console.error(e);const m=msg(e);if(!m)return;const x=$('e');x?x.textContent=m:alert(m)}};
 
 window.S=S;
 window.A={
- go:(v,x)=>{S.v=v;if(x!==undefined)S.pid=x;if(v==='detail'){S.color=null;S.size=null}draw()},
- out:()=>signOut(au),
- onlyw:()=>{ONLYW=!ONLYW;draw()},
+ go:(v,x)=>{if(!U&&PRIV.includes(v))return gate(v==='checkout'?'cart':v,x);
+  if(AUTHV.includes(v)&&!AUTHV.includes(S.v))S.back=S.v;
+  S.v=v;if(x!==undefined)S.pid=x;if(v==='detail'){S.color=null;S.size=null}draw()},
+ sec:async id=>{document.body.classList.remove('menu');if(S.v!=='home'){S.v='home';await draw()}const e=$(id);if(e)e.scrollIntoView({behavior:'smooth'})},
+ board:t=>{S.tab=t;A.go('board')},
+ menu:o=>document.body.classList.toggle('menu',o),
+ out:()=>{S.v='home';S.back=null;signOut(au)},
+ onlyw:b=>{if(!U)return gate();ONLYW=!ONLYW;b.classList.toggle('on',ONLYW);$('g').innerHTML=list()},
  checkout:()=>{S.co=[...cart];A.go('checkout')},
  enter:(id,el)=>{if(S.busy)return;
   if(matchMedia('(hover:none)').matches&&!el.classList.contains('front')){document.querySelectorAll('.hg.front').forEach(e=>e.classList.remove('front'));el.classList.add('front');return}
   S.busy=1;el.closest('.ward').classList.add('picking');el.classList.add('pick');
   setTimeout(()=>{const im=el.querySelector('.gm .img'),r=im.getBoundingClientRect(),d=document.createElement('div');d.className='dive';
    d.style.cssText=`left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px`;
-   d.style.background=im.tagName==='IMG'?(im.classList.contains('cut')?`url("${im.src}") center/contain no-repeat`:`url("${im.src}") center/cover`):'linear-gradient(160deg,#eef0f5,#dfe3ea)';
+   d.style.background=im.tagName==='IMG'?(im.classList.contains('cut')?`#efeeea url("${im.src}") center/contain no-repeat`:`url("${im.src}") center/cover`):'#efeeea';
    document.body.appendChild(d);d.getBoundingClientRect();d.classList.add('go');
    setTimeout(async()=>{try{S.v='detail';S.pid=id;S.color=null;S.size=null;await draw()}finally{S.busy=0;d.classList.add('out');setTimeout(()=>d.remove(),500)}},700)},850)},
  google:()=>run(async()=>{try{await signInWithPopup(au,new GoogleAuthProvider())}catch(e){if(/popup/.test(e.code||''))return;throw e}}),
  gsave:()=>run(async()=>{const g=au.currentUser,n=$('gn').value.trim(),b=$('gb').value;if(!n||!b)throw{message:'이름과 생년월일을 입력해 주세요.'};if(!$('gc').checked)throw{message:'개인정보 수집·이용에 동의해 주세요.'};
-  await setDoc(doc(db,'users',g.uid),{name:n,birth:b,id:(g.email||g.uid).split('@')[0].toLowerCase(),points:0,consent:new Date().toISOString(),at:new Date().toISOString()});await loadU(g);nav();A.go('home')}),
- w:id=>{W=W.includes(id)?W.filter(x=>x!==id):[...W,id];localStorage.setItem('w',JSON.stringify(W));$('g').innerHTML=list()},
+  await setDoc(doc(db,'users',g.uid),{name:n,birth:b,id:(g.email||g.uid).split('@')[0].toLowerCase(),points:0,consent:new Date().toISOString(),at:new Date().toISOString()});await loadU(g);toast('가입이 완료되었어요.');draw()}),
+ w:id=>{if(!U)return gate();const o=!W.includes(id);W=o?[...W,id]:W.filter(x=>x!==id);localStorage.setItem('w',JSON.stringify(W));
+  document.querySelectorAll(`[data-w="${id}"]`).forEach(b=>b.classList.toggle('on',o));if(ONLYW&&$('g'))$('g').innerHTML=list();toast(o?'찜한 상품에 담았어요.':'찜을 해제했어요.')},
  sort:v=>{SORT=v;$('g').innerHTML=list()},
- leave:()=>run(async()=>{if(!confirm('탈퇴하면 계정과 회원정보가 삭제됩니다. 계속할까요?'))return;await deleteDoc(doc(db,'users',U.uid));await deleteUser(au.currentUser);alert('탈퇴가 완료되었습니다.')}),
+ leave:()=>run(async()=>{if(!confirm('탈퇴하면 계정과 회원정보가 삭제됩니다. 계속할까요?'))return;await deleteDoc(doc(db,'users',U.uid));await deleteUser(au.currentUser);S.v='home';alert('탈퇴가 완료되었습니다.')}),
  search:q=>{Q=q;$('g').innerHTML=list()},
  pc:n=>{S.color=n;document.querySelectorAll('.sw').forEach(e=>e.classList.toggle('on',e.dataset.n===n));$('cn').textContent=n},
  ps:n=>{S.size=n;document.querySelectorAll('.sz').forEach(e=>e.classList.toggle('on',e.dataset.n===n))},
  tg:(k,v,el)=>{S[k]=S[k].includes(v)?S[k].filter(x=>x!==v):[...S[k],v];el.classList.toggle('on')},
- add:()=>{const k=need();if(!k)return;cart.push(k);saveCart();nav();alert('장바구니에 담았습니다.')},
- buy:()=>{const k=need();if(!k)return;S.co=[k];A.go('checkout')},
+ add:()=>{if(!U)return gate();const k=need();if(!k)return;cart.push(k);saveCart();nav();toast('장바구니에 담았어요.')},
+ buy:()=>{if(!U)return gate();const k=need();if(!k)return;S.co=[k];A.go('checkout')},
  rm:i=>{cart.splice(i,1);saveCart();draw()},
- login:()=>run(async()=>{const id=$('li').value.trim();await lg(au,mail(id),$('lp').value)}),
+ login:()=>run(async()=>{const id=$('li').value.trim();if(!id||!$('lp').value)throw{message:'아이디와 비밀번호를 입력해 주세요.'};await lg(au,mail(id),$('lp').value)}),
  signup:()=>run(async()=>{const n=$('sn').value.trim(),b=$('sb').value,id=$('si').value.trim();
   if(!n||!b||!id||!$('sp').value)throw{message:'모든 항목을 입력해 주세요.'};
   if(!$('sc').checked)throw{message:'개인정보 수집·이용에 동의해 주세요.'};
@@ -247,26 +683,35 @@ window.A={
   if($('sp').value!==$('sp2').value)throw{message:'비밀번호가 서로 일치하지 않습니다.'};
   const c=await mk(au,mail(id),$('sp').value);
   await setDoc(doc(db,'users',c.user.uid),{name:n,birth:b,id:id.toLowerCase(),points:0,consent:new Date().toISOString(),at:new Date().toISOString()})}),
- post:()=>run(async()=>{const rv=S.tab==='review',t=$('bt').value.trim(),b=$('bb').value.trim();if(!t||!b)throw{message:'제목과 내용을 입력해 주세요.'};
+ post:()=>run(async()=>{if(!U)return gate();const rv=S.tab==='review',t=$('bt').value.trim(),b=$('bb').value.trim();if(!t||!b)throw{message:'제목과 내용을 입력해 주세요.'};
   const o={t:S.tab,title:t.slice(0,80),body:b.slice(0,2000),uid:U.uid,name:U.name,at:new Date().toISOString()};let gain=0;
   const bt=writeBatch(db),pr=doc(collection(db,'posts'));
-  if(rv){const p=P.find(x=>x.id===$('bp').value);Object.assign(o,{pid:p.id,pn:p.name,star:+$('bs').value});const f=$('bf').files[0];if(f){o.img=await rd(f,600,.7);if(!o.img)throw{message:'사진을 불러올 수 없습니다.'}}
+  if(rv){const p=P.find(x=>x.id===$('bp').value);if(!p)throw{message:'상품을 선택해 주세요.'};Object.assign(o,{pid:p.id,pn:p.name,star:+$('bs').value});const f=$('bf').files[0];if(f){o.img=await rd(f,600,.7);if(!o.img)throw{message:'사진을 불러올 수 없습니다.'}}
    const rw=doc(db,'rewards',U.uid+'_'+p.id);if(!(await getDoc(rw)).exists()){gain=1000;bt.set(rw,{uid:U.uid,at:o.at});bt.update(doc(db,'users',U.uid),{points:increment(1000),lastReward:p.id})}}
-  bt.set(pr,o);await bt.commit();if(gain){await loadU(au.currentUser);nav();alert('리뷰가 등록되었습니다. +1,000P 적립!')}draw()}),
+  bt.set(pr,o);await bt.commit();if(gain){await loadU(au.currentUser);toast('리뷰가 등록되었어요. 1,000P 적립!')}else toast('등록되었어요.');draw()}),
  delPost:id=>run(async()=>{if(!confirm('삭제할까요?'))return;await deleteDoc(doc(db,'posts',id));draw()}),
  order:()=>run(async()=>{const l=S.co.map(k=>({p:P.find(x=>x.id===k.split('|')[0]),k})).filter(x=>x.p),t=tierOf(U.points);
   if(l.some(x=>x.p.vip)&&t.n!=='VIP')throw{message:'VIP 전용 신상이 포함되어 있습니다.'};
   const z=$('cz').value.trim(),a=($('ca').value+' '+$('cd').value).trim();if(!/^[0-9]{5}$/.test(z)||!a)throw{message:'우편번호(5자리)와 주소를 입력해 주세요.'};
   const total=l.filter(x=>!x.p.vip).reduce((s,x)=>s+x.p.price,0),paid=Math.round(total*(100-t.d)/100);
   await setDoc(doc(db,'orders','V'+Date.now().toString(36).toUpperCase()),{uid:U.uid,name:U.name,payer:$('ck').value.trim()||U.name,items:l.map(x=>x.p.name+(x.k.split('|')[1]?` (${x.k.split('|')[1]}/${x.k.split('|')[2]})`:'')),total,disc:t.d,paid,zip:z,addr:a.slice(0,200),st:paid?'입금대기':'무료제공',at:new Date().toISOString()});
-  cart=cart.filter(k=>!S.co.includes(k));saveCart();S.co=[];alert('주문이 접수되었습니다. 입금 계좌: 1002-0000-0000 (임건우)');A.go('orders')}),
+  cart=cart.filter(k=>!S.co.includes(k));saveCart();S.co=[];toast(paid?'주문이 접수되었어요. 입금 계좌를 확인해 주세요.':'주문이 접수되었어요.');A.go('orders')}),
  addProd:()=>run(async()=>{const n=$('an').value.trim(),p=+$('ap').value;if(!n||!(p>0))throw{message:'상품명과 가격을 입력해 주세요.'};const f=$('af').files[0];
-  await addDoc(collection(db,'products'),{name:n.slice(0,60),price:Math.round(p),desc:$('ad').value.slice(0,1000),vip:$('av').checked,colors:S.nc,sizes:S.ns,img:f?await rd(f):'',at:new Date().toISOString()});alert('상품이 등록되었습니다.');A.go('home')}),
+  await addDoc(collection(db,'products'),{name:n.slice(0,60),price:Math.round(p),desc:$('ad').value.slice(0,1000),vip:$('av').checked,colors:S.nc,sizes:S.ns,img:f?await rd(f):'',at:new Date().toISOString()});toast('상품이 등록되었어요.');A.go('home')}),
  delProd:id=>run(async()=>{if(!confirm('이 상품을 삭제할까요?'))return;await deleteDoc(doc(db,'products',id));A.go('home')}),
  confirm:id=>run(async()=>{const o=await getDoc(doc(db,'orders',id)),d=o.data();if(d.st!=='입금대기')return;
   await updateDoc(doc(db,'orders',id),{st:'입금확인'});await updateDoc(doc(db,'users',d.uid),{points:increment(d.total)});draw()}),
  ship:id=>run(async()=>{const n=$('sn_'+id).value.replace(/[^0-9A-Za-z-]/g,'');if(!n)throw{message:'송장번호를 입력해 주세요.'};await updateDoc(doc(db,'orders',id),{st:'배송중',ship:{c:$('sc_'+id).value,n}});draw()}),
- done:id=>run(async()=>{await updateDoc(doc(db,'orders',id),{st:'배송완료'});draw()})
+ done:id=>run(async()=>{await updateDoc(doc(db,'orders',id),{st:'배송완료'});draw()}),
+ saveSite:()=>run(async()=>{if(!(U&&U.admin))return;const o={};
+  SK.forEach(k=>{const e=$('s_'+k);if(e)o[k]=e.value.trim().slice(0,['brandBody','ship'].includes(k)?4000:400)});
+  const imgs={};
+  for(const k of['heroImg','brandImg']){const f=$('f_'+k).files[0];
+   if(f){let d=await rd(f,1600,.8);if(d&&d.length>950000)d=await rd(f,1200,.72);if(!d)throw{message:'사진을 불러올 수 없습니다.'};if(d.length>1000000)throw{message:'사진 용량이 너무 커요. 더 작은 사진으로 다시 시도해 주세요.'};imgs[k]=d}
+   else if($('x_'+k)?.checked)imgs[k]=''}
+  await setDoc(doc(db,'site','main'),o,{merge:true});
+  for(const k in imgs)await setDoc(doc(db,'site',k),{img:imgs[k]});
+  await loadSite();toast('저장되었어요.');draw()})
 };
 </script>
 </body>
